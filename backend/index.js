@@ -34,6 +34,30 @@ app.post("/users/register", async (req, res) => {
   res.status(201).json(newUser)
 })
 
+app.post("/users/login", async (req, res) => {
+  // superSecret -> $2b$10$WmxNDR4oVaWJOhJpWatmS.S2YViZ4Jqvr1W0RpgXlRIAp8lkrF0pG
+  const { email, password } = req.body
+
+  const existingUser = await User.findOne({ email: email })
+
+  console.log(existingUser)
+
+  if (existingUser !== null) {
+    const isPasswordCorrect = await bcrypt.compare(
+      password,
+      existingUser.password
+    )
+
+    if (isPasswordCorrect) {
+      return res.json(existingUser)
+    }
+  }
+
+  res.status(401).json({
+    message: "Invalid email or password"
+  })
+})
+
 app.listen(3000, async () => {
   console.log("Running on port 3000")
   try {
