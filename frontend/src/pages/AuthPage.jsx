@@ -5,6 +5,29 @@ import { cn } from "../utils"
 export const AuthPage = () => {
   // login or register
   const [activeForm, setActiveForm] = useState("login")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const authUser = async event => {
+    event.preventDefault()
+
+    console.log(email, password)
+
+    const response = await fetch("http://localhost:3000/users/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password
+      }),
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+
+    const json = await response.json()
+
+    console.log(json)
+  }
 
   return (
     <div className="form-container">
@@ -25,7 +48,7 @@ export const AuthPage = () => {
           Register
         </button>
       </div>
-      <form className="auth-form">
+      <form className="auth-form" onSubmit={authUser}>
         <h2 className="form-title">{activeForm}</h2>
         <p className="form-desc">
           {activeForm === "login"
@@ -42,11 +65,18 @@ export const AuthPage = () => {
         )}
         <div className="input-group">
           <label>Email</label>
-          <input placeholder="name@example.com" type="email" />
+          <input
+            placeholder="name@example.com"
+            type="email"
+            onChange={event => setEmail(event.target.value)}
+          />
         </div>
         <div className="input-group">
           <label>Password</label>
-          <input type="password" />
+          <input
+            type="password"
+            onChange={event => setPassword(event.target.value)}
+          />
         </div>
         {activeForm === "register" && (
           <>
