@@ -19,6 +19,7 @@ export const AuthPage = () => {
 
     const response = await fetch("http://localhost:3000/users/login", {
       method: "POST",
+      credentials: "include",
       body: JSON.stringify({
         email: email,
         password: password

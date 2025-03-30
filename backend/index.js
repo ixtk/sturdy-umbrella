@@ -2,6 +2,8 @@ import express from "express"
 import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 import cors from "cors"
+import session from "express-session"
+import MongoStore from "connect-mongo"
 
 const userSchema = new mongoose.Schema(
   {
@@ -18,7 +20,20 @@ const app = express()
 
 app.use(
   cors({
-    origin: "http://localhost:5173"
+    origin: "http://localhost:5173",
+    credentials: true
+  })
+)
+
+app.use(
+  session({
+    secret: "abc",
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 3
+    },
+    store: MongoStore.create({
+      mongoUrl: "mongodb://127.0.0.1:27017/sturdy-umbrella"
+    })
   })
 )
 
@@ -56,6 +71,8 @@ app.post("/users/login", async (req, res) => {
     )
 
     if (isPasswordCorrect) {
+      req.session.userId = existingUser._id.toString()
+
       return res.json(existingUser)
     }
   }
@@ -63,6 +80,20 @@ app.post("/users/login", async (req, res) => {
   res.status(401).json({
     message: "Invalid email or password"
   })
+})
+
+app.get("/user/status", async (req, res) => {
+  if (req.session) {
+    const user = await User.findById(req.session.userId)
+
+    return res.json({
+      user: user
+    })
+  } else {
+    return res.status(401).json({
+      user: null
+    })
+  }
 })
 
 app.listen(3000, async () => {
