@@ -1,12 +1,16 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { AuthContext } from "../AuthContext"
 import "./Auth.scss"
 import { cn } from "../utils"
+import { useNavigate } from "react-router"
 
 export const AuthPage = () => {
   // login or register
   const [activeForm, setActiveForm] = useState("login")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const { setAuth } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const authUser = async event => {
     event.preventDefault()
@@ -26,7 +30,14 @@ export const AuthPage = () => {
 
     const json = await response.json()
 
-    console.log(json)
+    setAuth({
+      user: {
+        username: json.username,
+        email: json.email
+      }
+    })
+
+    navigate("/")
   }
 
   return (
