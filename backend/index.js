@@ -32,7 +32,8 @@ app.use(
       maxAge: 1000 * 60 * 60 * 3
     },
     store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1:27017/sturdy-umbrella"
+      mongoUrl: "mongodb://127.0.0.1:27017/sturdy-umbrella",
+      stringify: false
     })
   })
 )
@@ -94,6 +95,15 @@ app.get("/user/status", async (req, res) => {
       user: null
     })
   }
+})
+
+app.delete("/user/logout", (req, res) => {
+  req.session.destroy()
+  res.clearCookie("connect.sid")
+
+  res.json({
+    message: "Logged out!"
+  })
 })
 
 app.listen(3000, async () => {

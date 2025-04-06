@@ -1,13 +1,17 @@
 import { createContext, useEffect, useState } from "react"
 
 export const AuthContext = createContext({
-  user: null
+  user: null,
+  loading: false
 })
 
 export const AuthContextProvider = ({ children }) => {
   const [auth, setAuth] = useState({
-    user: null
+    user: null,
+    loading: true
   })
+
+  console.log(auth.user)
 
   useEffect(() => {
     const getStatus = async () => {
@@ -24,7 +28,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={{ auth: auth, setAuth }}>
       {children}
     </AuthContext.Provider>
   )
