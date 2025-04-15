@@ -22,14 +22,15 @@ export default function EditProductPage() {
     <div>
       <h1>Edit Product</h1>
 
-      <p>Product Name</p>
+      <p className="product-name-header">Product Name</p>
       <input
+        className="product-name"
         type="text"
         value={product.productName}
         onChange={e => setProduct({ ...product, productName: e.target.value })}
       />
 
-      <p>Category</p>
+      <p className="category-header">Category</p>
       <select
         value={product.category}
         onChange={e => setProduct({ ...product, category: e.target.value })}
@@ -41,7 +42,7 @@ export default function EditProductPage() {
         ))}
       </select>
 
-      <h1>Pricing</h1>
+      <h1 className="pricing-header">Pricing</h1>
       <div className="pricing">
         <div className="regular-price">
           <p>Regular Price ($)</p>
@@ -75,19 +76,30 @@ export default function EditProductPage() {
             }
           />
         </div>
-        <div className="on-sale">
-          <div className="toggle-switch"></div> <p>On Sale</p>
+        <div
+          className="on-sale"
+          onClick={() =>
+            setProduct(prev => ({ ...prev, onSale: !prev.onSale }))
+          }
+        >
+          <div
+            className={`toggle-switch ${product.onSale ? "active" : ""}`}
+          ></div>
+          <p>{product.onSale ? "On Sale" : "Not on Sale"}</p>
         </div>
       </div>
 
-      <h1>Variants</h1>
+      <div className="variants-header">
+        <h1>Variants</h1>
+        <button>
+          <i className="fi fi-rr-plus-small"></i> Add Variant
+        </button>
+      </div>
       {product.variants.map((variant, index) => (
         <div className="variants" key={index}>
           <div className="variant-details">
-            <h1>Variant Details</h1>
-            <button>
-              <i className="fi fi-rr-plus-small"></i> Add Variant
-            </button>
+            <p>Variant Details</p>
+            <i class="fi fi-rs-trash"></i>
           </div>
           <div className="colorName-quantity-images">
             <div className="colorName">
@@ -166,7 +178,7 @@ export default function EditProductPage() {
                   />
                 </div>
                 <div className="wemen-size">
-                  <p>Wemen's Size</p>
+                  <p>Women's Size</p>
                   <input
                     type="text"
                     value={size.womensSize}
@@ -185,19 +197,35 @@ export default function EditProductPage() {
                     }}
                   />
                 </div>
-                <i className="fi fi-rr-cross-small"></i>
+                <button
+                  onClick={() => {
+                    const updatedVariants = [...product.variants]
+                    const updatedSizes = variant.availableSizes.filter(
+                      (_, i) => i !== sizeIndex
+                    )
+                    updatedVariants[index] = {
+                      ...variant,
+                      availableSizes: updatedSizes
+                    }
+                    setProduct({ ...product, variants: updatedVariants })
+                  }}
+                >
+                  <i className="fi fi-rr-cross-small"></i>
+                </button>
               </div>
             ))}
           </div>
 
-          <p>Size Summary</p>
-          {variant.availableSizes.map((size, i) => (
-            <div className="size-summary" key={i}>
-              <p>
-                M {size.mensSize}/W {size.womensSize}
-              </p>
-            </div>
-          ))}
+          <p className="size-summary-header">Size Summary</p>
+          <div className="size-summary">
+            {variant.availableSizes.map((size, i) => (
+              <div key={i}>
+                <p>
+                  M {size.mensSize}/W {size.womensSize}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>

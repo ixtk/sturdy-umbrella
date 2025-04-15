@@ -7,20 +7,233 @@
     --col-secondary-1: hsl(240, 10%, 95%);
     --col-light: hsl(0, 0%, 100%);
     --col-dark: hsl(0, 0%, 0%);
-  
+    
     --border-radius: 5px;
     --box-shadow:
       0 0 0 0 hsl(0, 0%, 0%), 0 0 0 0 hsla(0, 0%, 0%, 0),
       0 1px 2px 0 var(--col-secondary-2);
-  }
-
+    --margin-left-3-5: 3.5%;
+    --width-93: 93%;
+    --width-96-5: 96.5%;
+    --margin-left-05rem: 0.5rem;
+}
+  
 body {
     width: 90%;
     margin-left: 5%;
+    font-weight: 500;
 }
-
+  
 h1 {
     color: var(--col-dark);
 }
-
-
+  
+input {
+    width: 100%;
+}
+  
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--col-secondary-2);
+    font-weight: 500;
+}
+  
+button {
+    border: 1px solid var(--col-secondary-2);
+    display: flex;
+    align-items: center;
+}
+  
+.pricing {
+    display: flex;
+    gap: 1rem;
+}
+  
+.regular-price {
+    width: 35%;
+}
+  
+.sale-price {
+    width: 35%;
+}
+  
+.variants {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--col-secondary-2);
+    border-radius: var(--border-radius);
+    background-color: var(--col-light);
+    box-shadow: var(--box-shadow);
+    padding-bottom: 1rem;
+}
+  
+.variants-header {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+  
+.variant-details {
+    margin-left: var(--margin-left-3-5);
+    width: var(--width-93);
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+  
+.variant-details i {
+    color: var(--col-accent);
+}
+  
+.colorName-quantity-images {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: var(--width-93);
+    flex-wrap: wrap;
+    margin-left: var(--margin-left-3-5);
+}
+  
+.colorName-quantity-images div {
+    width: 31%;
+}
+  
+.colorName-quantity-images button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--col-primary-2);
+}
+  
+.uploadImages i {
+    margin-right: var(--margin-left-05rem);
+}
+  
+.sizes {
+    margin-left: var(--margin-left-3-5);
+}
+  
+.available-sizes {
+    width: var(--width-96-5);
+    display: flex;
+    justify-content: space-between;
+}
+  
+.men-women-size {
+    width: var(--width-96-5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.men-women-size button {
+    margin-top: 1.2rem;
+    border: none;
+    color: var(--col-accent);
+}
+  
+.men-women-size div {
+    width: 47%;
+}
+  
+.size-summary-header {
+    margin-left: var(--margin-left-3-5);
+}
+  
+.size-summary {
+    margin-left: var(--margin-left-3-5);
+    width: var(--width-96-5);
+    display: flex;
+}
+  
+.size-summary div {
+    border: 1px solid var(--col-secondary-2);
+    border-radius: 1rem;
+    padding-left: var(--margin-left-05rem);
+    padding-right: var(--margin-left-05rem);
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+  
+.size-summary div:nth-child(1) {
+    margin: 0;
+}
+  
+.variants,
+.variants-header,
+.colorName-quantity-images,
+.sizes,
+.available-sizes,
+.men-women-size,
+.size-summary-header,
+.image-previews,
+.pricing-header,
+.category-header,
+.product-name-header,
+.variant-details {
+    margin-top: 2rem;
+}
+  
+.colorName-quantity-images,
+.available-sizes {
+    font-size: 1.2rem;
+}
+  
+.on-sale {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+  
+.toggle-switch {
+    width: 3.5rem;
+    height: 1.75rem;
+    background-color: var(--col-secondary-2);
+    border-radius: 1.5rem;
+    position: relative;
+    transition: background-color 0.3s;
+}
+  
+.toggle-switch::before {
+    content: '';
+    position: absolute;
+    top: 0.125rem;
+    left: 0.125rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--col-light);
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+  
+  .toggle-switch.active {
+    background-color: var(--col-dark);
+}
+  
+.toggle-switch.active::before {
+    transform: translateX(1.75rem);
+}
+  
+/* Mobile styles */
+@media (max-width: 768px) {
+    .colorName-quantity-images div,
+    .regular-price,
+    .sale-price {
+      width: var(--width-93);
+    }
+  
+    .colorName-quantity-images {
+      gap: 1rem;
+    }
+  
+    .pricing {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+}
+  
