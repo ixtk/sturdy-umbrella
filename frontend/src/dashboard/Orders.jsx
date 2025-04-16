@@ -1,28 +1,34 @@
 import React from "react"
 import "./Orders.scss"
 import { useState, useEffect } from "react"
-import ordersData from "../data/data.json"
-import { FaBox, FaDollarSign, FaClock, FaTruck } from "react-icons/fa"
-import { FiSearch } from "react-icons/fi"
+import ordersData from "../data/data.json" //fake data რომელსაც ვიყენებთ ინფორმაციის map-ით გამოსაცენად
+import { FaBox, FaDollarSign, FaClock, FaTruck } from "react-icons/fa" // react-ის iconeb-ი
+import { FiSearch } from "react-icons/fi" // ესეც icon
 
 export const Orders = () => {
-  const [statusFilter, setStatusFilter] = useState("All")
-  const [filteredOrders, setFilteredOrders] = useState([])
+  const [statusFilter, setStatusFilter] = useState("All") // ეს state განსაზღვრავს რომელი ღილაკია მონიშნული
+  const [filteredOrders, setFilteredOrders] = useState([]) // ეს state არის სია იმ შეკვეთებისა, რომელიც შეესაბამება მონიშნულ ღილაკს
 
   useEffect(() => {
+    // useEffect ეშვება ყოველჯერზე როდესაც statusFilter იცვლება
     if (statusFilter === "All") {
+      //თუ მონიშნულია "ყველა" ღილაკი აი იმ გაფილტრული შეკვეთების სიას მთლიანი ordersData გადაეცემა მნიშვნელობად
       setFilteredOrders(ordersData)
     } else {
       setFilteredOrders(
-        ordersData.filter(order => order.status === statusFilter)
+        ordersData.filter(order => order.status === statusFilter) // აქ filter-ი ordersData-ს თითოეულ შეკვეთაში ატარებს ამ პირობას : order.status === statusFilter. ამოწმებს თუ ემთხვევა
+        //შეკვეთის სტატუსი statusFilter-ს (მონიშნული რაც გვაქვს) და თუ ემთხვევა ისინი ინახება ახალ მასივში რომელიც არის მეორე სთეითი filteredOrders
       )
     }
   }, [statusFilter])
 
   const statusCounts = {
+    // ეს ობიექტი ითვლის თითოეული კატეგორიის შეკვეთების რაოდენობას
     All: ordersData.length,
     Processing: ordersData.filter(order => order.status === "Processing")
-      .length,
+      .length, // იგივენაირად როგორც useEffect-ში ვამოწმებთ სტატუსს, ოღონდ ამ შემთხვევაში კონკრეტულ სტატუსს ვადარებთ
+    //რომელი შეკვეთის სტატუსიც დაემთხვევა, ამ შემთხვევაში "Processing"-ს , ის შევა მასივში, რომელსაც filter დაგვიბრუნებს და ამ მასივში შემავალი შეკვეთების რაოდენობა იქნება : ეს მასივი..length
+    //ანუ გამოვიდა, რომ Processing:- გასაღების მნიშვნელობა ამ ობიექტში იქნება რიცხვი, რაოდენობა იმ შეკვეთებისა, რომელიც მიეკუთვნება კონკრეტულ კატეგორიას.
     Shipped: ordersData.filter(order => order.status === "Shipped").length,
     Completed: ordersData.filter(order => order.status === "Completed").length,
     Cancelled: ordersData.filter(order => order.status === "Cancelled").length
@@ -91,10 +97,12 @@ export const Orders = () => {
 
       <div className="status-tabs">
         <button
-          className={statusFilter === "All" ? "active" : ""}
-          onClick={() => setStatusFilter("All")}
+          className={statusFilter === "All" ? "active" : ""} // ვანიჭებთ კლასის სახელს, რომ თუ მისი სტატუსი იქნება all , მაშინ მიენიჭოს კლასი active,
+          //რასაც css-ში ვიყენებთ მონიშნული ღილაკისთვის განსხვავებული ფონის მისანიჭებლად
+          onClick={() => setStatusFilter("All")} // ღილაკზე დაჭერისას სტატუსს ვანახლებთ, უხდება მითიტებული სტატუსი რაც შემდეგ შეასრულებს 96 ხაზზე დაწერილ პირობას
         >
-          All Orders ({statusCounts.All})
+          All Orders ({statusCounts.All}){" "}
+          {/* გამოგვაქვს რაოდენობა იმ კატეგორიის შეკვეთებისა რომელსაც ხელი დავაჭირეთ*/}
         </button>
         <button
           className={statusFilter === "Processing" ? "active" : ""}
@@ -144,10 +152,14 @@ export const Orders = () => {
                 <td>{order.customer}</td>
                 <td>{order.date}</td>
                 <td className={`status ${order.status.toLowerCase()}`}>
+                  {" "}
+                  {/* order.status შეიძლება იყოს "Completed", "Processing","Cancelled"... და ამ სტატუსის სახელს ყველას პატარა ასოებად 
+                გადააქცევს -toLowerCase , რაც საშუალებას გვაძლევს სხვადასხვა სტატუსის ღილაკებს სხვადასხვა კლასი მივანიჭოთ, შესაბამისად სხვადასხვა დიზაინი */}
                   {order.status}
                 </td>
                 <td>{order.items}</td>
-                <td>${order.total.toFixed(2)}</td>
+                <td>${order.total.toFixed(2)}</td>{" "}
+                {/* საბოლოო თანხა თუ არამთელი რიცხვი იქნება , ისეთი რომელსაც მძიმის მერე 2 ზე მეტი ციფრი აქვს ეს ფუნქცია 2 ციფრამდე მიყვანს  */}
                 <td>{order.actions}</td>
               </tr>
             ))}
