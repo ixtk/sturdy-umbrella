@@ -33,6 +33,9 @@ export const Orders = () => {
     Completed: ordersData.filter(order => order.status === "Completed").length,
     Cancelled: ordersData.filter(order => order.status === "Cancelled").length
   }
+  const totalRevenue = ordersData.reduce((acc, order) => acc + order.total, 0) //reduce გადააქცევს მასივს ერთ მნიშვნელობად; acc-ს საწყისი მნიშვნელობა არის 0 და ინახავს ახლანდელ მომენტში
+  //საბოლოო ფასის რაოდენობას. order არის კონკრეტული შეკვეთის ობიექტი ordersData მასივიდან. და ეს პროცესი ესე მიმდინარეობს რომ თავიდან acc არის 0 და მაგალითად რომელიმე სეკვეთის საფასურია 100
+  //acc + order.total იქნება 100, მაგრამ შემდეგი პროდუქტისთვის acc-ს მნიშვნელობა ინება უკვე 100 და მას დაემატება კიდევ სხვა პროდუქტის ფასი.
 
   return (
     <div className="orders-page">
@@ -42,7 +45,7 @@ export const Orders = () => {
           <FaBox className="icon" />
           <div>
             <p>Total Orders</p>
-            <h3>8</h3>
+            <h3>{ordersData.length}</h3>
           </div>
         </div>
 
@@ -50,7 +53,7 @@ export const Orders = () => {
           <FaDollarSign className="icon" />
           <div>
             <p>Total Revenue</p>
-            <h3>$1,179.88</h3>
+            <h3>${totalRevenue.toFixed(2)}</h3>
           </div>
         </div>
 
@@ -58,7 +61,7 @@ export const Orders = () => {
           <FaClock className="icon" />
           <div>
             <p>Processing</p>
-            <h3>2</h3>
+            <h3>{statusCounts.Processing}</h3>
           </div>
         </div>
 
@@ -66,7 +69,7 @@ export const Orders = () => {
           <FaTruck className="icon" />
           <div>
             <p>Shipped</p>
-            <h3>2</h3>
+            <h3>{statusCounts.Shipped}</h3>
           </div>
         </div>
       </div>
@@ -117,13 +120,21 @@ export const Orders = () => {
           Shipped ({statusCounts.Shipped})
         </button>
         <button
-          className={statusFilter === "Completed" ? "active" : ""}
+          className={
+            statusFilter === "Completed"
+              ? "active hide-on-small"
+              : "hide-on-small"
+          } //hide-on-small კლასები დავუმატე ბოლო ორ ღილაკს რომ პატარა ეკრანზე აღარ ჩანდეს
           onClick={() => setStatusFilter("Completed")}
         >
           Completed ({statusCounts.Completed})
         </button>
         <button
-          className={statusFilter === "Cancelled" ? "active" : ""}
+          className={
+            statusFilter === "Cancelled"
+              ? "active hide-on-small"
+              : "hide-on-small"
+          }
           onClick={() => setStatusFilter("Cancelled")}
         >
           Cancelled ({statusCounts.Cancelled})
@@ -151,11 +162,13 @@ export const Orders = () => {
                 <td>{order.email}</td>
                 <td>{order.customer}</td>
                 <td>{order.date}</td>
-                <td className={`status ${order.status.toLowerCase()}`}>
-                  {" "}
+                <td>
+                  <button className={`status ${order.status.toLowerCase()}`}>
+                    {" "}
+                    {order.status}{" "}
+                  </button>
                   {/* order.status შეიძლება იყოს "Completed", "Processing","Cancelled"... და ამ სტატუსის სახელს ყველას პატარა ასოებად 
                 გადააქცევს -toLowerCase , რაც საშუალებას გვაძლევს სხვადასხვა სტატუსის ღილაკებს სხვადასხვა კლასი მივანიჭოთ, შესაბამისად სხვადასხვა დიზაინი */}
-                  {order.status}
                 </td>
                 <td>{order.items}</td>
                 <td>${order.total.toFixed(2)}</td>{" "}
@@ -165,6 +178,33 @@ export const Orders = () => {
             ))}
           </tbody>
         </table>
+
+        <div className="orders-cards">
+          {filteredOrders.map(order => (
+            <div className="order-card" key={order.id}>
+              <div className="order-header">
+                <strong>{order.id}</strong>
+                <span className={`status-badge ${order.status.toLowerCase()}`}>
+                  {order.status}
+                </span>
+              </div>
+              <div className="order-body">
+                <p>
+                  <strong>{order.customer}</strong>
+                </p>
+                <p>{order.email}</p>
+                <p>Date: {order.date}</p>
+                <p>Items: {order.items}</p>
+                <p>
+                  <strong>Total: ${order.total.toFixed(2)}</strong>
+                </p>
+              </div>
+              <div className="order-footer">
+                <button>Actions</button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="pagination-row">
