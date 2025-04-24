@@ -8,7 +8,22 @@ import { FiSearch } from "react-icons/fi" // ესეც icon
 export const Orders = () => {
   const [statusFilter, setStatusFilter] = useState("All") // ეს state განსაზღვრავს რომელი ღილაკია მონიშნული
   const [filteredOrders, setFilteredOrders] = useState([]) // ეს state არის სია იმ შეკვეთებისა, რომელიც შეესაბამება მონიშნულ ღილაკს
+  //!-------------------
+  const [currentPage, setCurrentPage] = useState(1)
+  const ordersPerPage = 10
 
+  // Calculate total pages
+  const totalPages = Math.ceil(ordersData.length / ordersPerPage)
+
+  // Get current page's data
+  const indexOfLastOrder = currentPage * ordersPerPage
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage
+  const currentOrders = ordersData.slice(indexOfFirstOrder, indexOfLastOrder)
+
+  const handlePageChange = pageNumber => {
+    setCurrentPage(pageNumber)
+  }
+  //!-------------------
   useEffect(() => {
     // useEffect ეშვება ყოველჯერზე როდესაც statusFilter იცვლება
     if (statusFilter === "All") {
@@ -207,14 +222,19 @@ export const Orders = () => {
         </div>
       </div>
 
-      <div className="pagination-row">
-        <span> Previous </span>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <span>...</span>
-        <span>Next</span>
+      {/* //!------------------- */}
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, idx) => idx + 1).map(page => (
+          <button
+            key={page}
+            className={page === currentPage ? "active" : ""}
+            onClick={() => handlePageChange(page)}
+          >
+            {page}
+          </button>
+        ))}
       </div>
+      {/* //!--------------------- */}
     </div>
   )
 }
