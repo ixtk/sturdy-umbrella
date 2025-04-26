@@ -1,25 +1,31 @@
-import { createContext, useState, useEffect } from "react"
+import { createContext, useEffect, useState } from "react"
+import { axiosInstance } from "./axiosInstance"
 
 export const AuthContext = createContext({
-  user: null,
-  loading: true
+  loading: true,
+  user: null
 })
 
 export const AuthContextProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
-    user: null,
-    loading: true
+    loading: true,
+    user: null
   })
 
   useEffect(() => {
     const checkStatus = async () => {
-      const response = await fetch("http://localhost:3000/users/status", {
-        credentials: "include"
-      })
-
-      const json = await response.json()
-
-      setAuthState({ user: json.user, loading: false })
+      try {
+        const response = await axiosInstance.get("/users/status")
+        setAuthState({
+          loading: false,
+          user: response.data.user
+        })
+      } catch (error) {
+        setAuthState({
+          ...authState,
+          loading: false
+        })
+      }
     }
 
     checkStatus()
