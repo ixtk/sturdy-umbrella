@@ -7,35 +7,31 @@ import { FiSearch } from "react-icons/fi" // ესეც icon
 
 export const Orders = () => {
   const [statusFilter, setStatusFilter] = useState("All") // ეს state განსაზღვრავს რომელი ღილაკია მონიშნული
-  const [filteredOrders, setFilteredOrders] = useState([]) // ეს state არის სია იმ შეკვეთებისა, რომელიც შეესაბამება მონიშნულ ღილაკს
+
   //!-------------------
-  const [currentPage, setCurrentPage] = useState(1)
-  const ordersPerPage = 10
+  const [currentPage, setCurrentPage] = useState(1) //ეს არის გვერდის ნომერი და თავდაპირველად მომხმარებელი პირველ გვერდზეა
+  const ordersPerPage = 10 // როგორც ცვლადის სახელი გვეუბნება, ამ ცვლადით განვსაზღვრავთ რამდენი შეკვეთა გვინდა რომ იყოს თითო გვერდზე
 
-  // Calculate total pages
-  const totalPages = Math.ceil(ordersData.length / ordersPerPage)
+  const filteredData =
+    statusFilter === "All"
+      ? ordersData
+      : ordersData.filter(order => order.status === statusFilter) //statusFilter გვიჩვენებს რომელი ღილაკიცაა მონიშნული, და თუ მონიშნულია "All"
+  //ყველა შეკვეთა გამოჩნდება, და თუ სხვა კატეგორიაა მონიშნული მაშინ ვფილტრავთ შეკვეთების სიას რომ გამოვიტანოთ იმ კატეგორიის წარმომადგენელი შეკვეთები.
 
-  // Get current page's data
-  const indexOfLastOrder = currentPage * ordersPerPage
-  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage
-  const currentOrders = ordersData.slice(indexOfFirstOrder, indexOfLastOrder)
+  const totalPages = Math.ceil(filteredData.length / ordersPerPage) // ეს ფუნქცია ითვლის რამდენი გვერდი უნდა იყოს სულ. მაგალითად თუ გვაქვს 22 შეკვეთა და თითო გვერდზე უნდა იყოს 10 შეკვეთა
+  // ანუ გვჭირდება წესით 2.2 გვერდი და Math.ceil მაღალი ციფრისკენ დაამრგვალებს ამ რაოდენობას ამ შემთხვევაში 3-მდე, იმიტორო 2-მდე რომ დაამრგვალოს ორი შეკვეთა ალბათ აღარ გამოჩნდება ან აირევა რამე.
+
+  // indexOfFirstOrder, indexOfLastOrder ეს ორი ცვლადი განსაზღვრავს საიდან სადამდე გვაჩვენოს თითოეულ გვერდზე შეკვეთები
+  const indexOfLastOrder = currentPage * ordersPerPage // ბოლო შეკვეთის  ინდექსი იქნება currentPage რომლის საწყისი მნიშვნელობაცაა 1, ანუ პირველ გვერდზე ვართ, გამრავლებული იმ  რაოდენობაზე
+  //რამდენი შეკვეთაცაა ამ გვერდზე. დავუსვათ რომ ვიყოთ მესამე გვერდზე ბოლო შეკვეთის ინდექსი იქნებოდა 3*10 ანუ 30.
+
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage // პირველ გვერდზე indexOfFirstOrder-ის მნიშვნელობა იქნება 10-10=0 ანუ მასივის პირველი ელემენტიდან დაიწყებს ჩვენებას და ა.შ.
+  const currentOrders = filteredData.slice(indexOfFirstOrder, indexOfLastOrder) // აქ კი ვეუბნნებით, რომ filteredData მასივიდან ამოჭრას შეკვეთები indexOfFirstOrder- აქედან , indexOfLastOrder აქამდე
 
   const handlePageChange = pageNumber => {
-    setCurrentPage(pageNumber)
+    setCurrentPage(pageNumber) // როდესაც პაგინაციის ღილაკს დავაწვებით, ამ ფუნქციას იძახებს და CurrentPage-ის მნიშვნელობას შეცვლის.
   }
   //!-------------------
-  useEffect(() => {
-    // useEffect ეშვება ყოველჯერზე როდესაც statusFilter იცვლება
-    if (statusFilter === "All") {
-      //თუ მონიშნულია "ყველა" ღილაკი აი იმ გაფილტრული შეკვეთების სიას მთლიანი ordersData გადაეცემა მნიშვნელობად
-      setFilteredOrders(ordersData)
-    } else {
-      setFilteredOrders(
-        ordersData.filter(order => order.status === statusFilter) // აქ filter-ი ordersData-ს თითოეულ შეკვეთაში ატარებს ამ პირობას : order.status === statusFilter. ამოწმებს თუ ემთხვევა
-        //შეკვეთის სტატუსი statusFilter-ს (მონიშნული რაც გვაქვს) და თუ ემთხვევა ისინი ინახება ახალ მასივში რომელიც არის მეორე სთეითი filteredOrders
-      )
-    }
-  }, [statusFilter])
 
   const statusCounts = {
     // ეს ობიექტი ითვლის თითოეული კატეგორიის შეკვეთების რაოდენობას
@@ -117,20 +113,31 @@ export const Orders = () => {
         <button
           className={statusFilter === "All" ? "active" : ""} // ვანიჭებთ კლასის სახელს, რომ თუ მისი სტატუსი იქნება all , მაშინ მიენიჭოს კლასი active,
           //რასაც css-ში ვიყენებთ მონიშნული ღილაკისთვის განსხვავებული ფონის მისანიჭებლად
-          onClick={() => setStatusFilter("All")} // ღილაკზე დაჭერისას სტატუსს ვანახლებთ, უხდება მითიტებული სტატუსი რაც შემდეგ შეასრულებს 96 ხაზზე დაწერილ პირობას
+          onClick={
+            () => {
+              setStatusFilter("All")
+              setCurrentPage(1)
+            } // სტატუსის ღილაკზე დაჭერისას დაგვაბრუნებს პირველ გვერდზე
+          } // ღილაკზე დაჭერისას სტატუსს ვანახლებთ, უხდება მითიტებული სტატუსი რაც შემდეგ შეასრულებს 96 ხაზზე დაწერილ პირობას
         >
           All Orders ({statusCounts.All}){" "}
           {/* გამოგვაქვს რაოდენობა იმ კატეგორიის შეკვეთებისა რომელსაც ხელი დავაჭირეთ*/}
         </button>
         <button
           className={statusFilter === "Processing" ? "active" : ""}
-          onClick={() => setStatusFilter("Processing")}
+          onClick={() => {
+            setStatusFilter("Processing")
+            setCurrentPage(1)
+          }}
         >
           Processing ({statusCounts.Processing})
         </button>
         <button
           className={statusFilter === "Shipped" ? "active" : ""}
-          onClick={() => setStatusFilter("Shipped")}
+          onClick={() => {
+            setStatusFilter("Shipped")
+            setCurrentPage(1)
+          }}
         >
           Shipped ({statusCounts.Shipped})
         </button>
@@ -150,7 +157,10 @@ export const Orders = () => {
               ? "active hide-on-small"
               : "hide-on-small"
           }
-          onClick={() => setStatusFilter("Cancelled")}
+          onClick={() => {
+            setStatusFilter("Cancelled")
+            setCurrentPage(1)
+          }}
         >
           Cancelled ({statusCounts.Cancelled})
         </button>
@@ -171,7 +181,7 @@ export const Orders = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredOrders.map(order => (
+            {currentOrders.map(order => (
               <tr key={order.id}>
                 <td>{order.id}</td>
                 <td>{order.email}</td>
@@ -195,7 +205,7 @@ export const Orders = () => {
         </table>
 
         <div className="orders-cards">
-          {filteredOrders.map(order => (
+          {currentOrders.map(order => (
             <div className="order-card" key={order.id}>
               <div className="order-header">
                 <strong>{order.id}</strong>
@@ -224,15 +234,20 @@ export const Orders = () => {
 
       {/* //!------------------- */}
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, idx) => idx + 1).map(page => (
-          <button
-            key={page}
-            className={page === currentPage ? "active" : ""}
-            onClick={() => handlePageChange(page)}
-          >
-            {page}
-          </button>
-        ))}
+        {Array.from({ length: totalPages }, (_, idx) => idx + 1).map(
+          (
+            page //Array.from ქმნის მასივს, რომლის სიგრძეც არის totalPages, და ეს მასივი ინახავს ღილაკებს
+          ) => (
+            // ციფრებით რომელ გვერდზეც ვართ ამიტომაც მათი რაოდენობა უნდა იყოს ტოლი totalPages რაოდენობის.
+            <button
+              key={page}
+              className={page === currentPage ? "activPage" : "numbers"} // თუ იმ გვერდზე ვიქნებით, რომელ ღილაკზეც გვაქვს დაჭერილი გვინდა განსხვავებული კლასი მივანიჭოთ.
+              onClick={() => handlePageChange(page)}
+            >
+              {page}
+            </button>
+          )
+        )}
       </div>
       {/* //!--------------------- */}
     </div>
