@@ -1,32 +1,41 @@
 import "./Home.scss"
+import { AuthContext } from "../AuthContext.jsx"
 import { useContext } from "react"
-import { AuthContext } from "../AuthContext"
-import { Link, useNavigate } from "react-router"
+import { Link } from "react-router"
 
 export const HomePage = () => {
-  const { auth } = useContext(AuthContext)
-  const navigate = useNavigate()
+  const { authState, setAuthState } = useContext(AuthContext)
 
-  const logoutUser = async () => {
-    const response = await fetch("http://localhost:3000/user/logout", {
+  const logout = async () => {
+    const response = await fetch("http://localhost:3000/users/logout", {
       method: "DELETE",
       credentials: "include"
     })
 
-    if (response.ok) {
-      navigate("/auth")
-    }
+    setAuthState({
+      user: null
+    })
   }
 
   return (
-    <>
-      {auth.user === null ? (
-        <Link to="/auth">Auth</Link>
-      ) : (
-        <button onClick={logoutUser}>Logout</button>
-      )}
+    <div>
+      <nav style={{ display: "flex", gap: "16px" }}>
+        <Link to="/">Home</Link>
 
-      <h1 className="title">Hello {auth.user?.username}</h1>
-    </>
+        {authState.user ? (
+          <>
+            <Link to="/secret">Secret</Link>
+            <button onClick={logout}>Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+          </>
+        )}
+      </nav>
+      <h1 className="title">Welcome</h1>
+      <h2>{authState.user && authState.user.username}</h2>
+    </div>
   )
 }

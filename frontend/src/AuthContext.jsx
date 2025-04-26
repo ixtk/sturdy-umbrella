@@ -1,34 +1,32 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 export const AuthContext = createContext({
   user: null,
-  loading: false
+  loading: true
 })
 
 export const AuthContextProvider = ({ children }) => {
-  const [auth, setAuth] = useState({
+  const [authState, setAuthState] = useState({
     user: null,
     loading: true
   })
 
-  console.log(auth.user)
-
   useEffect(() => {
-    const getStatus = async () => {
-      const response = await fetch("http://localhost:3000/user/status", {
+    const checkStatus = async () => {
+      const response = await fetch("http://localhost:3000/users/status", {
         credentials: "include"
       })
 
       const json = await response.json()
 
-      setAuth(json)
+      setAuthState({ user: json.user, loading: false })
     }
 
-    getStatus()
+    checkStatus()
   }, [])
 
   return (
-    <AuthContext.Provider value={{ auth: auth, setAuth }}>
+    <AuthContext.Provider value={{ authState, setAuthState }}>
       {children}
     </AuthContext.Provider>
   )

@@ -1,23 +1,33 @@
 import express from "express"
-import mongoose from "mongoose"
-import bcrypt from "bcrypt"
-import cors from "cors"
 import session from "express-session"
 import MongoStore from "connect-mongo"
+import mongoose from "mongoose"
+import bcrypt from "bcrypt"
+import { loginSchema, registerSchema } from "./schema.js"
+import { validateSchema, verifyAuth } from "./middleware.js"
+import { User } from "./models.js"
+import cors from "cors"
 
-const userSchema = new mongoose.Schema(
-  {
-    username: String,
-    email: String,
-    password: String
-  },
-  { timestamps: true }
+export const app = express()
+
+app.use(
+  session({
+    // HIDE IN PROD!
+    secret: "super secret",
+    resave: false,
+    saveUninitialized: false,
+    // rolling: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 3,
+      httpOnly: true
+    },
+    store: MongoStore.create({
+      mongoUrl: "mongodb://127.0.0.1:27017/fluffy-spoon",
+      stringify: false
+    })
+  })
 )
-
-export const User = mongoose.model("User", userSchema)
-
-const app = express()
-
+app.use(express.json())
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -25,92 +35,72 @@ app.use(
   })
 )
 
-app.use(
-  session({
-    secret: "abc",
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 3
-    },
-    store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1:27017/sturdy-umbrella",
-      stringify: false
+app.get("/secret", verifyAuth, (req, res) => {
+  res.json({ secret: "2 x 2 = 4" })
+})
+
+app.post(
+  "/users/register",
+  validateSchema(registerSchema),
+  async (req, res) => {
+    const registerValues = req.body
+
+    const hashedPassword = await bcrypt.hash(registerValues.password, 12)
+
+    const newUser = await User.create({
+      username: registerValues.username,
+      email: registerValues.email,
+      password: hashedPassword
     })
-  })
+    req.session.userId = newUser._id.toString()
+
+    res.status(201).json({
+      user: {
+        username: newUser.username,
+        email: newUser.email
+      }
+    })
+  }
 )
 
-app.use(express.json())
-
-app.post("/users/register", async (req, res) => {
-  const { username, email, password, confirmPassword } = req.body
-
-  const saltRounds = 10
-  const hashedPassword = await bcrypt.hash(password, saltRounds)
-
-  const newUser = new User({
-    username: username,
-    email,
-    password: hashedPassword
-  })
-
-  await newUser.save()
-
-  res.status(201).json(newUser)
-})
-
-app.post("/users/login", async (req, res) => {
-  // superSecret -> $2b$10$WmxNDR4oVaWJOhJpWatmS.S2YViZ4Jqvr1W0RpgXlRIAp8lkrF0pG
+app.post("/users/login", validateSchema(loginSchema), async (req, res) => {
   const { email, password } = req.body
 
-  const existingUser = await User.findOne({ email: email })
+  const existingUser = await User.findOne({ email }).exec()
 
-  console.log(existingUser)
-
-  if (existingUser !== null) {
-    const isPasswordCorrect = await bcrypt.compare(
-      password,
-      existingUser.password
-    )
-
-    if (isPasswordCorrect) {
-      req.session.userId = existingUser._id.toString()
-
-      return res.json(existingUser)
-    }
-  }
-
-  res.status(401).json({
-    message: "Invalid email or password"
-  })
-})
-
-app.get("/user/status", async (req, res) => {
-  if (req.session) {
-    const user = await User.findById(req.session.userId)
-
+  if (existingUser && (await bcrypt.compare(password, existingUser.password))) {
+    req.session.userId = existingUser._id.toString()
     return res.json({
-      user: user
-    })
-  } else {
-    return res.status(401).json({
-      user: null
+      message: "Logged in",
+      user: {
+        username: existingUser.username,
+        email: existingUser.email
+      }
     })
   }
+
+  res.status(401).json({ message: "Email or password incorrect" })
 })
 
-app.delete("/user/logout", (req, res) => {
+app.delete("/users/logout", async (req, res) => {
   req.session.destroy()
   res.clearCookie("connect.sid")
 
-  res.json({
-    message: "Logged out!"
-  })
+  res.json({ message: "Logged out" })
+})
+
+app.get("/users/status", verifyAuth, async (req, res) => {
+  // სატესტო დაყოვნებისთვის
+  // await fetch('http://httpbin.org/delay/2')
+
+  res.json({ user: req.user })
 })
 
 app.listen(3000, async () => {
   console.log("Running on port 3000")
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/sturdy-umbrella")
-    console.log("Connected to the database")
+    await mongoose.connect("mongodb://127.0.0.1:27017/fluffy-spoon")
+    console.log("Connected to the database: fluffy-spoon")
   } catch (error) {
     console.log(error)
   }
