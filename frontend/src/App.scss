@@ -1,4 +1,9 @@
 @use "@/partials/_reset";
+@use "@/pages/Auth";
+
+* {
+  box-sizing: border-box;
+}
 
 :root {
   --col-accent: hsl(21, 90%, 48%);
@@ -17,8 +22,15 @@
 }
 
 body {
+  margin: 0;
+  padding: 16px;
+  line-height: 1.4;
   font-family: "Geist", sans-serif;
   background-color: var(--col-light);
+}
+
+img {
+  display: block;
 }
 
 input,
@@ -30,6 +42,23 @@ button {
 
 input {
   border: 1px solid var(--col-secondary-2);
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+a {
+  display: inline-block;
 }
 
 .input-group {
