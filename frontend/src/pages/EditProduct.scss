@@ -87,7 +87,10 @@ button {
 .variant-details i {
     color: var(--col-accent);
 }
-  
+.remove-variant-btn {
+    border: none;
+}
+
 .colorName-quantity-images {
     display: flex;
     align-items: center;
@@ -127,6 +130,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
   
 .men-women-size button {
@@ -173,7 +177,8 @@ button {
 .pricing-header,
 .category-header,
 .product-name-header,
-.variant-details {
+.variant-details,
+.save-changes-box {
     margin-top: 2rem;
 }
   
@@ -211,14 +216,23 @@ button {
     transition: transform 0.3s;
 }
   
-  .toggle-switch.active {
+.toggle-switch.active {
     background-color: var(--col-dark);
 }
   
 .toggle-switch.active::before {
     transform: translateX(1.75rem);
 }
-  
+.save-changes-box {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.save-changes {
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    color: var(--col-light);
+    background-color: var(--col-dark);
+}
 /* Mobile styles */
 @media (max-width: 768px) {
     .colorName-quantity-images div,
@@ -234,6 +248,10 @@ button {
     .pricing {
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .size-summary {
+        font-size: 0.8rem;
     }
 }
   
