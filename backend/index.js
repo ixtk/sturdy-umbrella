@@ -22,7 +22,7 @@ app.use(
       httpOnly: true
     },
     store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1:27017/fluffy-spoon",
+      mongoUrl: "mongodb://127.0.0.1:27017/sturdy-umbrella",
       stringify: false
     })
   })
@@ -99,8 +99,8 @@ app.get("/users/status", verifyAuth, async (req, res) => {
 app.listen(3000, async () => {
   console.log("Running on port 3000")
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/fluffy-spoon")
-    console.log("Connected to the database: fluffy-spoon")
+    await mongoose.connect("mongodb://127.0.0.1:27017/sturdy-umbrella")
+    console.log("Connected to the database: sturdy-umbrella")
   } catch (error) {
     console.log(error)
   }
