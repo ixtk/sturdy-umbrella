@@ -13,8 +13,8 @@ createRoot(document.getElementById("root")).render(
 
 
 
-import React, { useState } from "react";
-import "./../styles/ProductPage.css";
+import React, { useState } from "react"
+import "./App.scss"
 
 const colors = ["Red", "Black", "White", "Blue", "Gray", "Green"];
 const sizes = [
