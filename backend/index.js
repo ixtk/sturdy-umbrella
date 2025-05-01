@@ -5,7 +5,7 @@ import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 import { loginSchema, registerSchema } from "./schema.js"
 import { validateSchema, verifyAuth } from "./middleware.js"
-import { User } from "./models.js"
+import { User, Product } from "./models.js"
 import cors from "cors"
 
 export const app = express()
@@ -94,6 +94,24 @@ app.get("/users/status", verifyAuth, async (req, res) => {
   // await fetch('http://httpbin.org/delay/2')
 
   res.json({ user: req.user })
+})
+
+app.post("/products", async (req, res) => {
+  const newProductValues = req.body
+
+  const newProduct = await Product.create(newProductValues)
+
+  res.status(201).json(newProduct)
+})
+
+// params = { id: "68139926c53d88c7240564cd" }
+
+app.get("/products/:id", async (req, res) => {
+  const { id } = req.params
+
+  const product = await Product.findById(id)
+
+  res.json(product)
 })
 
 app.listen(3000, async () => {
