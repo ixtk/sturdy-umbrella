@@ -12,23 +12,23 @@
       {
         "colorName": "Shadow Grey",
         "stockQuantity": 58,
-        "images": ["shadow-grey-1.jpg", "shadow-grey-2.jpg"],
+        "images": [],
         "availableSizes": [
-          { "mensSize": "8", "womensSize": "10" },
-          { "mensSize": "8.5", "womensSize": "10.5" },
-          { "mensSize": "9", "womensSize": "11" },
-          { "mensSize": "9.5", "womensSize": "11.5" }
+          { "mensSize": 8, "womensSize": 10 },
+          { "mensSize": 8.5, "womensSize": 10.5 },
+          { "mensSize": 9, "womensSize": 11 },
+          { "mensSize": 9.5, "womensSize": 11.5 }
         ]
       },
       {
         "colorName": "Crimson Blaze",
         "stockQuantity": 34,
-        "images": ["crimson-blaze-1.jpg", "crimson-blaze-2.jpg"],
+        "images": [],
         "availableSizes": [
-          { "mensSize": "7", "womensSize": "9" },
-          { "mensSize": "7.5", "womensSize": "9.5" },
-          { "mensSize": "8", "womensSize": "10" },
-          { "mensSize": "8.5", "womensSize": "10.5" }
+          { "mensSize": 7, "womensSize": 9 },
+          { "mensSize": 7.5, "womensSize": 9.5 },
+          { "mensSize": 8, "womensSize": 10 },
+          { "mensSize": 8.5, "womensSize": 10.5 }
         ]
       }
     ]
@@ -46,7 +46,7 @@
       {
         "colorName": "Arctic Blue",
         "stockQuantity": 40,
-        "images": ["arctic-blue-1.jpg", "arctic-blue-2.jpg"],
+        "images": [],
         "availableSizes": [
           { "mensSize": "9", "womensSize": "10.5" },
           { "mensSize": "9.5", "womensSize": "11" },
@@ -57,7 +57,7 @@
       {
         "colorName": "Solar Ember",
         "stockQuantity": 27,
-        "images": ["solar-ember-1.jpg", "solar-ember-2.jpg"],
+        "images": [],
         "availableSizes": [
           { "mensSize": "8", "womensSize": "10" },
           { "mensSize": "8.5", "womensSize": "10.5" },
