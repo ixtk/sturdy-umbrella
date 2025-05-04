@@ -104,6 +104,18 @@ app.post("/products", async (req, res) => {
   res.status(201).json(newProduct)
 })
 
+app.post("/products/:id/review", async (req, res) => {
+  const reviewValues = req.body
+
+  const product = await Product.findById(req.params.id)
+
+  product.reviews.push(reviewValues)
+
+  await product.save()
+
+  res.status(201).json(product.reviews)
+})
+
 // params = { id: "68139926c53d88c7240564cd" }
 
 app.get("/products/:id", async (req, res) => {

@@ -43,8 +43,8 @@ const ProductSchema = new mongoose.Schema(
       {
         starRating: { required: true, type: Number },
         title: { required: true, type: String },
-        description: String
-        // authorId
+        description: String,
+        authorId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }
       }
     ]
   },
