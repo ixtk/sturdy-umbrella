@@ -1,14 +1,18 @@
 import React from "react"
-import "./Orders.scss"
-import { useState, useEffect } from "react"
+import "./OrdersPage.scss"
+import { useState } from "react"
 import ordersData from "../data/data.json" //fake data რომელსაც ვიყენებთ ინფორმაციის map-ით გამოსაცენად
-import { FaBox, FaDollarSign, FaClock, FaTruck } from "react-icons/fa" // react-ის iconeb-ი
-import { FiSearch } from "react-icons/fi" // ესეც icon
+import { clsx } from "clsx"
+import { Search } from "lucide-react"
+import { Clock } from "lucide-react"
+import { CircleDollarSign } from "lucide-react"
+import { Package2 } from "lucide-react"
+import { Truck } from "lucide-react"
 
-export const Orders = () => {
+export const OrdersPage = () => {
   const [statusFilter, setStatusFilter] = useState("All") // ეს state განსაზღვრავს რომელი ღილაკია მონიშნული
 
-  //!-------------------
+  //! ცხრილის პაგინაციისთვის
   const [currentPage, setCurrentPage] = useState(1) //ეს არის გვერდის ნომერი და თავდაპირველად მომხმარებელი პირველ გვერდზეა
   const ordersPerPage = 10 // როგორც ცვლადის სახელი გვეუბნება, ამ ცვლადით განვსაზღვრავთ რამდენი შეკვეთა გვინდა რომ იყოს თითო გვერდზე
 
@@ -48,12 +52,21 @@ export const Orders = () => {
   //საბოლოო ფასის რაოდენობას. order არის კონკრეტული შეკვეთის ობიექტი ordersData მასივიდან. და ეს პროცესი ესე მიმდინარეობს რომ თავიდან acc არის 0 და მაგალითად რომელიმე სეკვეთის საფასურია 100
   //acc + order.total იქნება 100, მაგრამ შემდეგი პროდუქტისთვის acc-ს მნიშვნელობა ინება უკვე 100 და მას დაემატება კიდევ სხვა პროდუქტის ფასი.
 
+  // ! status-button-ებისთვის
+  const statusButtons = [
+    { title: "All", value: "All" },
+    { title: "Processing", value: "Processing" },
+    { title: "Shipped", value: "Shipped" },
+    { title: "Completed", value: "Completed", hideOnSmall: true },
+    { title: "Cancelled", value: "Cancelled", hideOnSmall: true }
+  ]
   return (
     <div className="orders-page">
       <h1>Order Management</h1>
+      {/* //!დიდი ოთხი ღილაკი */}
       <div className="summary-boxes">
         <div className="box total-orders">
-          <FaBox className="icon" />
+          <Package2 className="icon" />
           <div>
             <p>Total Orders</p>
             <h3>{ordersData.length}</h3>
@@ -61,7 +74,7 @@ export const Orders = () => {
         </div>
 
         <div className="box total-revenue">
-          <FaDollarSign className="icon" />
+          <CircleDollarSign className="icon" />
           <div>
             <p>Total Revenue</p>
             <h3>${totalRevenue.toFixed(2)}</h3>
@@ -69,7 +82,7 @@ export const Orders = () => {
         </div>
 
         <div className="box processing">
-          <FaClock className="icon" />
+          <Clock className="icon" />
           <div>
             <p>Processing</p>
             <h3>{statusCounts.Processing}</h3>
@@ -77,17 +90,19 @@ export const Orders = () => {
         </div>
 
         <div className="box shipped">
-          <FaTruck className="icon" />
+          <Truck className="icon" />
           <div>
             <p>Shipped</p>
             <h3>{statusCounts.Shipped}</h3>
           </div>
         </div>
       </div>
+      {/* //!--------------------- */}
 
+      {/* //! სტრიქონი search-bar-ით და selector-ებით */}
       <div className="filters-row">
         <div className="search-wrapper">
-          <FiSearch />
+          <Search />
           <input
             type="text"
             placeholder="Search orders..."
@@ -108,64 +123,30 @@ export const Orders = () => {
           <option>This Month</option>
         </select>
       </div>
+      {/* //!--------------------- */}
 
+      {/* //!შეკვეთის სტატუსის მოსანიშნი ღილაკების სტრიქონი */}
       <div className="status-tabs">
-        <button
-          className={statusFilter === "All" ? "active" : ""} // ვანიჭებთ კლასის სახელს, რომ თუ მისი სტატუსი იქნება all , მაშინ მიენიჭოს კლასი active,
-          //რასაც css-ში ვიყენებთ მონიშნული ღილაკისთვის განსხვავებული ფონის მისანიჭებლად
-          onClick={
-            () => {
-              setStatusFilter("All")
-              setCurrentPage(1)
-            } // სტატუსის ღილაკზე დაჭერისას დაგვაბრუნებს პირველ გვერდზე
-          } // ღილაკზე დაჭერისას სტატუსს ვანახლებთ, უხდება მითიტებული სტატუსი რაც შემდეგ შეასრულებს 96 ხაზზე დაწერილ პირობას
-        >
-          All Orders ({statusCounts.All}){" "}
-          {/* გამოგვაქვს რაოდენობა იმ კატეგორიის შეკვეთებისა რომელსაც ხელი დავაჭირეთ*/}
-        </button>
-        <button
-          className={statusFilter === "Processing" ? "active" : ""}
-          onClick={() => {
-            setStatusFilter("Processing")
-            setCurrentPage(1)
-          }}
-        >
-          Processing ({statusCounts.Processing})
-        </button>
-        <button
-          className={statusFilter === "Shipped" ? "active" : ""}
-          onClick={() => {
-            setStatusFilter("Shipped")
-            setCurrentPage(1)
-          }}
-        >
-          Shipped ({statusCounts.Shipped})
-        </button>
-        <button
-          className={
-            statusFilter === "Completed"
-              ? "active hide-on-small"
-              : "hide-on-small"
-          } //hide-on-small კლასები დავუმატე ბოლო ორ ღილაკს რომ პატარა ეკრანზე აღარ ჩანდეს
-          onClick={() => setStatusFilter("Completed")}
-        >
-          Completed ({statusCounts.Completed})
-        </button>
-        <button
-          className={
-            statusFilter === "Cancelled"
-              ? "active hide-on-small"
-              : "hide-on-small"
-          }
-          onClick={() => {
-            setStatusFilter("Cancelled")
-            setCurrentPage(1)
-          }}
-        >
-          Cancelled ({statusCounts.Cancelled})
-        </button>
+        {statusButtons.map(btnObj => (
+          <button
+            key={btnObj.value}
+            onClick={() => {
+              setStatusFilter(btnObj.value) //ღილაკზე დაჭერისას სტატუსს ვანახლებთ, უხდება მითითებული სტატუსი
+              setCurrentPage(1) //სტატუსის ღილაკზე დაჭერისას დაგვაბრუნებს პირველ გვერდზე
+            }}
+            className={clsx(
+              statusFilter === btnObj.value && "active", //ვანიჭებთ კლასის სახელს, რომ თუ მისი სტატუსი იქნება all , მაშინ მიენიჭოს კლასი active, რასაც css-ში ვიყენებთ მონიშნული ღილაკისთვის განსხვავებული ფონის მისანიჭებლად
+              btnObj.hideOnSmall && "hide-on-small"
+            )}
+          >
+            {btnObj.title} ({statusCounts[btnObj.value]}){" "}
+            {/* გამოგვაქვს რაოდენობა იმ კატეგორიის შეკვეთებისა, რომელსაც ხელი დავაჭირეთ */}
+          </button>
+        ))}
       </div>
+      {/* //!--------------------- */}
 
+      {/* //! ცხრილი */}
       <div className="orders-container">
         <table className="orders-table">
           <thead>
@@ -203,7 +184,9 @@ export const Orders = () => {
             ))}
           </tbody>
         </table>
+        {/* //!--------------------- */}
 
+        {/* //! ცხრილი პატარა ეკრანზე*/}
         <div className="orders-cards">
           {currentOrders.map(order => (
             <div className="order-card" key={order.id}>
@@ -231,8 +214,9 @@ export const Orders = () => {
           ))}
         </div>
       </div>
+      {/* //!--------------------- */}
 
-      {/* //!------------------- */}
+      {/* //! ცხრილის პაგინაცია */}
       <div className="pagination">
         {Array.from({ length: totalPages }, (_, idx) => idx + 1).map(
           (

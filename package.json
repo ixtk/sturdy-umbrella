@@ -14,5 +14,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.507.0"
+  }
 }
