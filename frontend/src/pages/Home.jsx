@@ -1,7 +1,7 @@
 import "./Home.scss"
 import { useEffect, useState } from "react"
 
-export const ProductList = () => {
+export const Home = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -21,11 +21,16 @@ export const ProductList = () => {
           <img src={product.imageUrl} alt={product.name} />
           <h3>{product.name}</h3>
           <p>{product.description}</p>
-          <p>Price: ${product.price}</p>
+          <p>Categorry: {product.category}</p>
+          <p>
+            Price: ${product.price}
+            <span>{product.originalPrice}</span>
+          </p>
+          <p>Colors: {product.colors}</p>
         </div>
       ))}
     </div>
   )
 }
 
-export default ProductList
+export default Home
