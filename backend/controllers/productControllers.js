@@ -28,3 +28,19 @@ export const getProductById = async (req, res) => {
 
   res.json(product)
 }
+
+export const deleteReview = async (req, res) => {
+  const { productId, reviewId } = req.params
+
+  // console.log(req.params)
+
+  const product = await Product.findById(productId)
+
+  const reviewToDelete = await product.reviews.id(reviewId)
+
+  await reviewToDelete.deleteOne()
+
+  const updatedProduct = await product.save()
+
+  res.json(updatedProduct.reviews)
+}
