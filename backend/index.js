@@ -5,7 +5,8 @@ import mongoose from "mongoose"
 import bcrypt from "bcrypt"
 import { loginSchema, registerSchema } from "./schema.js"
 import { validateSchema, verifyAuth } from "./middleware.js"
-import { User, Product } from "./models.js"
+import { User } from "./models.js"
+import { productRouter } from "./routers/productRouter.js"
 import cors from "cors"
 
 export const app = express()
@@ -34,6 +35,8 @@ app.use(
     credentials: true
   })
 )
+
+app.use("/products", productRouter)
 
 app.get("/secret", verifyAuth, (req, res) => {
   res.json({ secret: "2 x 2 = 4" })
@@ -94,36 +97,6 @@ app.get("/users/status", verifyAuth, async (req, res) => {
   // await fetch('http://httpbin.org/delay/2')
 
   res.json({ user: req.user })
-})
-
-app.post("/products", async (req, res) => {
-  const newProductValues = req.body
-
-  const newProduct = await Product.create(newProductValues)
-
-  res.status(201).json(newProduct)
-})
-
-app.post("/products/:id/review", async (req, res) => {
-  const reviewValues = req.body
-
-  const product = await Product.findById(req.params.id)
-
-  product.reviews.push(reviewValues)
-
-  await product.save()
-
-  res.status(201).json(product.reviews)
-})
-
-// params = { id: "68139926c53d88c7240564cd" }
-
-app.get("/products/:id", async (req, res) => {
-  const { id } = req.params
-
-  const product = await Product.findById(id)
-
-  res.json(product)
 })
 
 app.listen(3000, async () => {
