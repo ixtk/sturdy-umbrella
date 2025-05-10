@@ -21,12 +21,12 @@ export const Home = () => {
           <img src={product.imageUrl} alt={product.name} />
           <h3>{product.name}</h3>
           <p>{product.description}</p>
-          <p>Categorry: {product.category}</p>
-          <p>
+          <p className="cat">Categorry: {product.category}</p>
+          <p className="price">
             Price: ${product.price}
             <span>{product.originalPrice}</span>
           </p>
-          <p>Colors: {product.colors}</p>
+          <p className="colors">Colors: {product.colors}</p>
         </div>
       ))}
     </div>
