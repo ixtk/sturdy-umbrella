@@ -1,5 +1,7 @@
 @use "@/partials/_reset";
 
+.product-container {flex-direction: column }
+
 * {
   box-sizing: border-box;
 }
