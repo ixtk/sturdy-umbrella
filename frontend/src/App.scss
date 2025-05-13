@@ -1,4 +1,5 @@
 @use "@/partials/_reset";
+@use "@/pages/Auth";
 
 * {
   box-sizing: border-box;
@@ -22,6 +23,7 @@
 
 body {
   margin: 0;
+  padding: 16px;
   line-height: 1.4;
   font-family: "Geist", sans-serif;
   background-color: var(--col-light);
