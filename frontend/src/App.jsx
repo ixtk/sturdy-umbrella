@@ -6,6 +6,7 @@ import { useContext } from "react"
 import { AuthContext } from "./AuthContext"
 import { LoginPage } from "./pages/LoginPage"
 import { RegisterPage } from "./pages/RegisterPage"
+import EditProductPage from "./pages/EditProduct"
 
 function App() {
   const ProtectedRoute = () => {
@@ -40,6 +41,7 @@ function App() {
     <Routes>
       <Route index element={<HomePage />} />
       <Route path="/orders" element={<OrdersPage />} />
+      <Route path="products/:productId" element={<EditProductPage />} />
       <Route element={<RedirectIfLoggedIn />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
