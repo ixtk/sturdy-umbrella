@@ -1,6 +1,7 @@
 import "./App.scss"
 import { Route, Routes, Navigate, Outlet } from "react-router"
 import { HomePage } from "./pages/Home"
+import { OrdersPage } from "./dashboard/OrdersPage"
 import { useContext } from "react"
 import { AuthContext } from "./AuthContext"
 import { LoginPage } from "./pages/LoginPage"
@@ -38,7 +39,7 @@ function App() {
   return (
     <Routes>
       <Route index element={<HomePage />} />
-
+      <Route path="/orders" element={<OrdersPage />} />
       <Route element={<RedirectIfLoggedIn />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
