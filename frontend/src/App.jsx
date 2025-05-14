@@ -7,6 +7,7 @@ import { AuthContext } from "./AuthContext"
 import { LoginPage } from "./pages/LoginPage"
 import { RegisterPage } from "./pages/RegisterPage"
 import EditProductPage from "./pages/EditProduct"
+import { ProductList } from "./pages/components/ProductList"
 
 function App() {
   const ProtectedRoute = () => {
@@ -40,8 +41,11 @@ function App() {
   return (
     <Routes>
       <Route index element={<HomePage />} />
+
+      <Route path="/products" element={<ProductList />} />
       <Route path="/orders" element={<OrdersPage />} />
       <Route path="products/:productId" element={<EditProductPage />} />
+
       <Route element={<RedirectIfLoggedIn />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
