@@ -1,0 +1,104 @@
+.filter-sidebar {
+  width: 250px;
+  padding: 1rem;
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.filter-group h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.filter-group label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.filter-group.color-group label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.color-dot {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.black { background-color: black; }
+.white { background-color: white; }
+.navy { background-color: navy; }
+.brown { background-color: brown; }
+.red { background-color: red; }
+.blue { background-color: blue; }
+.green { background-color: green; }
+.gray { background-color: gray; }
+
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 0.5rem;
+}
+
+.size-grid button {
+  padding: 0.5rem 1rem;
+  background: white;
+  border: 1px solid gray;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.size-grid button:hover {
+  background-color: #ddd;
+}
+
+
+@media (max-width: 768px) {
+  .size-grid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 480px) {
+  .size-grid {
+    grid-template-columns: 1fr; 
+  }
+}
+
+
+.filter-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.filter-group span {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #bbb;
+}
+
