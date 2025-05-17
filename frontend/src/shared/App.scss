@@ -1,5 +1,5 @@
-@use "@/partials/_reset";
-@use "@/pages/Auth";
+@use "reset";
+@use "@/shared/Auth";
 
 * {
   box-sizing: border-box;
@@ -16,32 +16,25 @@
   --col-dark: hsl(0, 0%, 0%);
 
   --border-radius: 5px;
-  --box-shadow:
-    0 0 0 0 hsl(0, 0%, 0%), 0 0 0 0 hsla(0, 0%, 0%, 0),
-    0 1px 2px 0 var(--col-secondary-2);
+  --box-shadow: 0 0 0 0 hsl(0, 0%, 0%), 0 0 0 0 hsla(0, 0%, 0%, 0),
+  0 1px 2px 0 var(--col-secondary-2);
 }
 
 body {
-  margin: 0;
-  padding: 16px;
-  line-height: 1.4;
   font-family: "Geist", sans-serif;
   background-color: var(--col-light);
 }
 
-img {
-  display: block;
-}
-
 input,
 button {
-  font: inherit;
   padding: 7px 10px;
   border-radius: var(--border-radius);
 }
 
 input {
   border: 1px solid var(--col-secondary-2);
+}
+
 .product-container {
   display: flex;
   gap: 2rem;
@@ -63,21 +56,9 @@ input {
   color: #888;
 }
 
-h1,
-h2,
-h3,
-h4,
-p {
-  margin: 0;
-}
-
 button {
   border: 0;
   cursor: pointer;
-}
-
-a {
-  display: inline-block;
 }
 
 .input-group {
@@ -165,4 +146,11 @@ a {
 
 .add-to-cart-btn:hover {
   background-color: #333;
+}
+
+header nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 0;
 }

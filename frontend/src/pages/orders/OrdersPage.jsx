@@ -1,7 +1,7 @@
 import React from "react"
 import "./OrdersPage.scss"
 import { useState } from "react"
-import ordersData from "../data/data.json" //fake data რომელსაც ვიყენებთ ინფორმაციის map-ით გამოსაცენად
+import ordersData from "../../mock-data/orders.json" //fake mock-data რომელსაც ვიყენებთ ინფორმაციის map-ით გამოსაცენად
 import { clsx } from "clsx"
 import { Search } from "lucide-react"
 import { Clock } from "lucide-react"

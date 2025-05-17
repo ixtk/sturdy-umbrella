@@ -16,7 +16,7 @@ export default function VariantsSection({ values, setFieldValue }) {
   // ამ ფუნქციით ვამატებთ ფოტოს. ფაილს ვკითხულობთ და ვამატებთ სთეითში.
   return (
     <FieldArray name="variants">
-      {/* FieldArray გვაძლევს საშუალებას ვიმუშაოთ სიებთან და გვაძლევს დამატება და წაშლის ფუნქციებს. name="variants" არის ის სია რომელზეც მუშაობა გვინდა. fake.json-ში ერთ-ერთი key არის variants რომლის მნიშვნელობაც არის სია, სწორედ ამ სიასთან გვინდა მუშაობა. */}
+      {/* FieldArray გვაძლევს საშუალებას ვიმუშაოთ სიებთან და გვაძლევს დამატება და წაშლის ფუნქციებს. name="variants" არის ის სია რომელზეც მუშაობა გვინდა. existing-product.json-ში ერთ-ერთი key არის variants რომლის მნიშვნელობაც არის სია, სწორედ ამ სიასთან გვინდა მუშაობა. */}
       {({ push, remove }) => (
         <>
           <div className="variants-header">
@@ -33,7 +33,7 @@ export default function VariantsSection({ values, setFieldValue }) {
               }
             >
               <Plus className="lucide-icon" /> Add Variant
-              {/* ამ ღილაკით ვამატებთ fake.json-ში ახალ ობიექტს, სადაც საწყისი მნიშვნელობები ცარიელია */}
+              {/* ამ ღილაკით ვამატებთ existing-product.json-ში ახალ ობიექტს, სადაც საწყისი მნიშვნელობები ცარიელია */}
             </button>
           </div>
 

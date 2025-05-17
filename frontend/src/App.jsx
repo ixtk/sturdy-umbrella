@@ -1,13 +1,15 @@
-import "./App.scss"
+import "./shared/App.scss"
 import { Route, Routes, Navigate, Outlet } from "react-router"
-import { HomePage } from "./pages/Home"
-import { OrdersPage } from "./dashboard/OrdersPage"
+import { HomePage } from "./pages/home/Home.jsx"
+import { OrdersPage } from "./pages/orders/OrdersPage.jsx"
 import { useContext } from "react"
-import { AuthContext } from "./AuthContext"
-import { LoginPage } from "./pages/LoginPage"
-import { RegisterPage } from "./pages/RegisterPage"
-import EditProductPage from "./pages/EditProduct"
-import { ProductList } from "./pages/components/ProductList"
+import { AuthContext } from "./lib/AuthContext.jsx"
+import { LoginPage } from "./pages/login/LoginPage.jsx"
+import { RegisterPage } from "./pages/register/RegisterPage.jsx"
+import EditProductPage from "./pages/product-edit/EditProductPage.jsx"
+import { ProductListPage } from "./pages/products/ProductListPage.jsx"
+import { Layout } from "@/shared/Layout.jsx"
+import ProductPage from "@/pages/product/Product.jsx"
 
 function App() {
   const ProtectedRoute = () => {
@@ -40,19 +42,22 @@ function App() {
 
   return (
     <Routes>
-      <Route index element={<HomePage />} />
+      <Route element={<Layout />}>
+        <Route index element={<HomePage />} />
 
-      <Route path="/products" element={<ProductList />} />
-      <Route path="/orders" element={<OrdersPage />} />
-      <Route path="products/:productId" element={<EditProductPage />} />
+        <Route path="/products" element={<ProductListPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="products/:productId/edit" element={<EditProductPage />} />
+        <Route path="products/:productId" element={<ProductPage />} />
 
-      <Route element={<RedirectIfLoggedIn />}>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Route>
+        <Route element={<RedirectIfLoggedIn />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
 
-      <Route element={<ProtectedRoute />}>
-        <Route path="/secret" element={<h1>2 x 2 = 4</h1>} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/secret" element={<h1>2 x 2 = 4</h1>} />
+        </Route>
       </Route>
     </Routes>
   )

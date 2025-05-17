@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "UltraGlide Pro Running Shoes",
+    "category": "Men's Athletic",
+    "price": 99.99,
+    "originalPrice": 129.99,
+    "colors": 5
+  },
+
+  {
+    "id": 2,
+    "name": "AirFlex Casual Sneakers",
+    "category": "Casual",
+    "price": 89.99,
+    "colors": 3
+  },
+
+  {
+    "id": 3,
+    "name": "TrailMaster Hiking Boots",
+    "category": "Men's Boots",
+    "price": 129.99,
+    "originalPrice": 149.99,
+    "colors": 2
+  },
+
+  {
+    "id": 4,
+    "name": "CloudStep Walking Shoes",
+    "category": "Women's Casual",
+    "price": 79.99,
+    "colors": 4
+  },
+
+  {
+    "id": 5,
+    "name": "ElegantStride Formal Oxfords",
+    "category": "Men's Formal",
+    "price": 159.99,
+    "colors": 2
+  },
+
+  {
+    "id": 6,
+    "name": "FlexFit Basketball Shoes",
+    "category": "Athletic",
+    "price": 99.99,
+    "originalPrice": 120.99,
+    "colors": 6
+  },
+
+  {
+    "id": 7,
+    "name": "SummerBreeze Sandals",
+    "category": "Women's Sandals",
+    "price": 39.99,
+    "originalPrice": 49.99,
+    "colors": 8
+  },
+
+  {
+    "id": 8,
+    "name": "WinterGrip Snow Boots",
+    "category": "Boots",
+    "price": 169.99,
+    "colors": 3
+  },
+
+  {
+    "id": 9,
+    "name": "Nike Air Max Dn8",
+    "category": "Men's Shoes",
+    "price": 190,
+    "colors": 10
+  },
+
+  {
+    "id": 10,
+    "name": "Urban Street Skate Shoes",
+    "category": "Unisex",
+    "price": 75.99,
+    "colors": 4
+  },
+
+  {
+    "id": 11,
+    "name": "Velocity Track Spikes",
+    "category": "Performance",
+    "price": 89.99,
+    "originalPrice": 110,
+    "colors": 2
+  },
+
+  {
+    "id": 12,
+    "name": "Comfort Plus Nursing Shoes",
+    "category": "Professional",
+    "price": 95,
+    "colors": 3
+  }
+]

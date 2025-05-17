@@ -9,7 +9,6 @@
   },
   "scripts": {
     "prepare": "husky",
-    "server": "json-server --watch data.json --port 3000",
     "pretty-quick": "pretty-quick --staged --pattern \"**/*.*(js|jsx|css)\""
   },
   "keywords": [],

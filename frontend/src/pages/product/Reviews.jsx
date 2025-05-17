@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Star } from "lucide-react"
-import "./review.css"
+import "./Review.scss"
 
 const Review = () => {
   const [reviews, setReviews] = useState([

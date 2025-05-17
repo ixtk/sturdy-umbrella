@@ -1,8 +1,8 @@
 import { useParams } from "react-router"
 import { Formik, Form } from "formik"
-import productData from "./fake.json"
-import VariantsSection from "./components/Variants"
-import ProductDetailsSection from "./components/ProductDetails"
+import productData from "../../mock-data/existing-product.json"
+import VariantsSection from "./Variants.jsx"
+import ProductDetailsSection from "./ProductDetails.jsx"
 import "./EditProduct.scss"
 
 export default function EditProductPage() {
