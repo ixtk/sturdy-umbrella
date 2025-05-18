@@ -47,3 +47,9 @@ export const deleteReview = async (req, res) => {
 
   res.json(updatedProduct.reviews)
 }
+
+export const getProductList = async (req, res) => {
+  const products = await Product.find()
+
+  res.json(products)
+}

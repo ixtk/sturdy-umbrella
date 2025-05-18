@@ -1,7 +1,19 @@
 import products from "@/mock-data/products.json"
 import Filters from "@/pages/products/Filters.jsx"
+import { useEffect } from "react"
+import { axiosInstance } from "@/lib/axiosInstance.js"
 
 export const ProductListPage = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axiosInstance.get("/products/")
+
+      console.log(response)
+    }
+
+    fetchData()
+  }, [])
+
   return (
     <>
       <Filters />
@@ -19,6 +31,7 @@ export const ProductListPage = () => {
             <p className="colors">Colors: {product.colors}</p>
           </div>
         ))}
-      </div></>
+      </div>
+    </>
   )
 }
