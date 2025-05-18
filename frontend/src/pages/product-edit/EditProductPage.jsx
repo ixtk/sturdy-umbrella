@@ -1,11 +1,11 @@
 import { useParams } from "react-router"
 import { Formik, Form } from "formik"
-import productData from "../../mock-data/existing-product.json"
+import productData from "@/mock-data/existing-product.json"
 import VariantsSection from "./Variants.jsx"
 import ProductDetailsSection from "./ProductDetails.jsx"
 import "./EditProduct.scss"
 
-export default function EditProductPage() {
+export function EditProductPage() {
   const { productId } = useParams()
   // useParams გვეხმარბა პროდუქტის id გამოვიყენოთ route-ში, მას გადააქცევს ცვლადად და საძიებო ველში მნიშვნელობას გამოიტანს.
 

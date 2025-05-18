@@ -1,13 +1,9 @@
 import React from "react"
 import "./OrdersPage.scss"
 import { useState } from "react"
-import ordersData from "../../mock-data/orders.json" //fake mock-data რომელსაც ვიყენებთ ინფორმაციის map-ით გამოსაცენად
+import ordersData from "@/mock-data/orders.json" //fake mock-data რომელსაც ვიყენებთ ინფორმაციის map-ით გამოსაცენად
 import { clsx } from "clsx"
-import { Search } from "lucide-react"
-import { Clock } from "lucide-react"
-import { CircleDollarSign } from "lucide-react"
-import { Package2 } from "lucide-react"
-import { Truck } from "lucide-react"
+import { Search, Clock, CircleDollarSign, Package2, Truck } from "lucide-react"
 
 export const OrdersPage = () => {
   const [statusFilter, setStatusFilter] = useState("All") // ეს state განსაზღვრავს რომელი ღილაკია მონიშნული
