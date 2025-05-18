@@ -6,6 +6,7 @@ import bcrypt from "bcrypt"
 import { loginSchema, registerSchema } from "./schema.js"
 import { validateSchema, verifyAuth } from "./middleware.js"
 import { User } from "./models.js"
+import { productRouter } from "./routers/productRouter.js"
 import cors from "cors"
 
 export const app = express()
@@ -34,6 +35,8 @@ app.use(
     credentials: true
   })
 )
+
+app.use("/products", productRouter)
 
 app.get("/secret", verifyAuth, (req, res) => {
   res.json({ secret: "2 x 2 = 4" })
