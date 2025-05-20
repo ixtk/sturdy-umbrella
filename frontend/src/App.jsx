@@ -6,13 +6,22 @@ import { Layout } from "@/shared/Layout.jsx"
 import { HomePage } from "@/pages/home/HomePage.jsx"
 import { LoginPage } from "@/pages/login/LoginPage.jsx"
 import { RegisterPage } from "@/pages/register/RegisterPage.jsx"
+import { LoaderCircle } from "lucide-react"
+
+const LoadingSpinner = () => {
+  return (
+    <div className="loading-spinner">
+      <LoaderCircle />
+    </div>
+  )
+}
 
 function App() {
   const ProtectedRoute = () => {
     const { authState } = useContext(AuthContext)
 
     if (authState.loading) {
-      return null
+      return <LoadingSpinner />
     }
 
     if (authState.user !== null) {
@@ -26,7 +35,7 @@ function App() {
     const { authState } = useContext(AuthContext)
 
     if (authState.loading) {
-      return null
+      return <LoadingSpinner />
     }
 
     if (authState.user !== null) {

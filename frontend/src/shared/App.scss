@@ -30,6 +30,19 @@ body {
   --black: hsl(0, 0%, 0%);
 }
 
+html, body, #root {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex-grow: 1;
+  }
+}
+
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -118,6 +131,29 @@ span {
 }
 
 // Rest of the app
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  svg {
+    width: 100px;
+    height: 100px;
+    color: var(--gray-300);
+    animation: spin 2s linear infinite;
+  }
+}
 
 header ul {
   padding: 0;
