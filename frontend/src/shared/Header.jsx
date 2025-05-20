@@ -19,6 +19,7 @@ export const Header = () => {
         <ul>
           <li>
             <NavLink to="/">Home</NavLink>
+            <NavLink to="/products">Products</NavLink>
           </li>
           {authState.user ? (
             <>

@@ -7,6 +7,7 @@ import { HomePage } from "@/pages/home/HomePage.jsx"
 import { LoginPage } from "@/pages/login/LoginPage.jsx"
 import { RegisterPage } from "@/pages/register/RegisterPage.jsx"
 import { LoaderCircle } from "lucide-react"
+import { ProductsPage } from "@/pages/products/ProductsPage.jsx"
 
 const LoadingSpinner = () => {
   return (
@@ -49,7 +50,7 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
-
+        <Route path="/products" element={<ProductsPage />} />
         <Route element={<RedirectIfLoggedIn />}>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />

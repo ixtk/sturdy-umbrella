@@ -1,0 +1,1017 @@
+[
+  {
+    "title": "Pullover Hoodie",
+    "regularPrice": 86.91,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Bottoms",
+    "variants": [
+      {
+        "colorName": "Olive",
+        "quantity": 90,
+        "sizes": [
+          {
+            "men": 18,
+            "woman": 12
+          },
+          {
+            "men": 11,
+            "woman": 13
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "Navy",
+        "quantity": 25,
+        "sizes": [
+          {
+            "men": 17,
+            "woman": 6
+          },
+          {
+            "men": 7,
+            "woman": 15
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 2,
+        "title": "Disappointed",
+        "description": "Color is slightly off from pictures.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Would buy again",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Disappointed",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Would buy again",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Not bad",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Canvas Backpack",
+    "regularPrice": 107.58,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Tops",
+    "variants": [
+      {
+        "colorName": "Olive",
+        "quantity": 87,
+        "sizes": [
+          {
+            "men": 6,
+            "woman": 15
+          },
+          {
+            "men": 17,
+            "woman": 15
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "Gray",
+        "quantity": 53,
+        "sizes": [
+          {
+            "men": 19,
+            "woman": 20
+          },
+          {
+            "men": 8,
+            "woman": 20
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "Black",
+        "quantity": 94,
+        "sizes": [
+          {
+            "men": 5,
+            "woman": 18
+          },
+          {
+            "men": 7,
+            "woman": 12
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 2,
+        "title": "Disappointed",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Good quality",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Highly recommend",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Disappointed",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Slim Fit Chinos",
+    "regularPrice": 130.72,
+    "salePrice": 94.72,
+    "isOnSale": true,
+    "category": "Bottoms",
+    "variants": [
+      {
+        "colorName": "Tan",
+        "quantity": 99,
+        "sizes": [
+          {
+            "men": 20,
+            "woman": 14
+          },
+          {
+            "men": 12,
+            "woman": 15
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 3,
+        "title": "Disappointed",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Highly recommend",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 3,
+        "title": "Good quality",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Good quality",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Leather Wallet",
+    "regularPrice": 31.93,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Footwear",
+    "variants": [
+      {
+        "colorName": "Tan",
+        "quantity": 79,
+        "sizes": [
+          {
+            "men": 12,
+            "woman": 8
+          },
+          {
+            "men": 17,
+            "woman": 9
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "White",
+        "quantity": 81,
+        "sizes": [
+          {
+            "men": 12,
+            "woman": 19
+          },
+          {
+            "men": 7,
+            "woman": 7
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 4,
+        "title": "Disappointed",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Highly recommend",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 3,
+        "title": "Would buy again",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Would buy again",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Disappointed",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Bomber Jacket",
+    "regularPrice": 40.76,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Accessories",
+    "variants": [
+      {
+        "colorName": "Olive",
+        "quantity": 54,
+        "sizes": [
+          {
+            "men": 12,
+            "woman": 15
+          },
+          {
+            "men": 19,
+            "woman": 19
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "Burgundy",
+        "quantity": 78,
+        "sizes": [
+          {
+            "men": 8,
+            "woman": 19
+          },
+          {
+            "men": 13,
+            "woman": 11
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 2,
+        "title": "Highly recommend",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Not bad",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Would buy again",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Would buy again",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Graphic Tee",
+    "regularPrice": 83.85,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Tops",
+    "variants": [
+      {
+        "colorName": "White",
+        "quantity": 70,
+        "sizes": [
+          {
+            "men": 10,
+            "woman": 8
+          },
+          {
+            "men": 18,
+            "woman": 17
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 2,
+        "title": "Not bad",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Highly recommend",
+        "description": "Color is slightly off from pictures.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Highly recommend",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Baseball Cap",
+    "regularPrice": 71.7,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Accessories",
+    "variants": [
+      {
+        "colorName": "Tan",
+        "quantity": 29,
+        "sizes": [
+          {
+            "men": 19,
+            "woman": 8
+          },
+          {
+            "men": 15,
+            "woman": 20
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 3,
+        "title": "Disappointed",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Would buy again",
+        "description": "Color is slightly off from pictures.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Good quality",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 3,
+        "title": "Not bad",
+        "description": "Color is slightly off from pictures.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Highly recommend",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Running Shorts",
+    "regularPrice": 108.41,
+    "salePrice": 96.26,
+    "isOnSale": true,
+    "category": "Footwear",
+    "variants": [
+      {
+        "colorName": "Burgundy",
+        "quantity": 88,
+        "sizes": [
+          {
+            "men": 17,
+            "woman": 19
+          },
+          {
+            "men": 7,
+            "woman": 6
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "Olive",
+        "quantity": 30,
+        "sizes": [
+          {
+            "men": 9,
+            "woman": 6
+          },
+          {
+            "men": 15,
+            "woman": 17
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "Gray",
+        "quantity": 48,
+        "sizes": [
+          {
+            "men": 5,
+            "woman": 13
+          },
+          {
+            "men": 19,
+            "woman": 13
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 5,
+        "title": "Disappointed",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 3,
+        "title": "Disappointed",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Thermal Shirt",
+    "regularPrice": 125.83,
+    "salePrice": 88.9,
+    "isOnSale": true,
+    "category": "Outerwear",
+    "variants": [
+      {
+        "colorName": "Black",
+        "quantity": 68,
+        "sizes": [
+          {
+            "men": 15,
+            "woman": 18
+          },
+          {
+            "men": 6,
+            "woman": 11
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "Navy",
+        "quantity": 89,
+        "sizes": [
+          {
+            "men": 16,
+            "woman": 16
+          },
+          {
+            "men": 15,
+            "woman": 6
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 4,
+        "title": "Highly recommend",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Disappointed",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Highly recommend",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Disappointed",
+        "description": "Color is slightly off from pictures.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 3,
+        "title": "Not bad",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Puffer Vest",
+    "regularPrice": 72.15,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Footwear",
+    "variants": [
+      {
+        "colorName": "Navy",
+        "quantity": 22,
+        "sizes": [
+          {
+            "men": 5,
+            "woman": 13
+          },
+          {
+            "men": 10,
+            "woman": 16
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "Navy",
+        "quantity": 92,
+        "sizes": [
+          {
+            "men": 17,
+            "woman": 6
+          },
+          {
+            "men": 5,
+            "woman": 11
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "White",
+        "quantity": 84,
+        "sizes": [
+          {
+            "men": 20,
+            "woman": 18
+          },
+          {
+            "men": 18,
+            "woman": 16
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 2,
+        "title": "Would buy again",
+        "description": "Color is slightly off from pictures.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 3,
+        "title": "Disappointed",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Not bad",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Good quality",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Would buy again",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Crewneck Sweatshirt",
+    "regularPrice": 64.82,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Bottoms",
+    "variants": [
+      {
+        "colorName": "Olive",
+        "quantity": 40,
+        "sizes": [
+          {
+            "men": 20,
+            "woman": 17
+          },
+          {
+            "men": 5,
+            "woman": 18
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 2,
+        "title": "Highly recommend",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Disappointed",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Disappointed",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Would buy again",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Disappointed",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Low-top Sneakers",
+    "regularPrice": 123.85,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Footwear",
+    "variants": [
+      {
+        "colorName": "Navy",
+        "quantity": 58,
+        "sizes": [
+          {
+            "men": 14,
+            "woman": 10
+          },
+          {
+            "men": 20,
+            "woman": 18
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 2,
+        "title": "Would buy again",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Not bad",
+        "description": "Color is slightly off from pictures.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Disappointed",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Disappointed",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Corduroy Pants",
+    "regularPrice": 136.71,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Outerwear",
+    "variants": [
+      {
+        "colorName": "Navy",
+        "quantity": 45,
+        "sizes": [
+          {
+            "men": 7,
+            "woman": 9
+          },
+          {
+            "men": 5,
+            "woman": 7
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      },
+      {
+        "colorName": "Black",
+        "quantity": 20,
+        "sizes": [
+          {
+            "men": 19,
+            "woman": 8
+          },
+          {
+            "men": 5,
+            "woman": 11
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 3,
+        "title": "Would buy again",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Would buy again",
+        "description": "A bit tight but looks good.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Highly recommend",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Would buy again",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Highly recommend",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Windbreaker Jacket",
+    "regularPrice": 32.36,
+    "salePrice": null,
+    "isOnSale": false,
+    "category": "Accessories",
+    "variants": [
+      {
+        "colorName": "Burgundy",
+        "quantity": 47,
+        "sizes": [
+          {
+            "men": 14,
+            "woman": 15
+          },
+          {
+            "men": 12,
+            "woman": 15
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400",
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 2,
+        "title": "Disappointed",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Disappointed",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Disappointed",
+        "description": "Very happy with this purchase.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 4,
+        "title": "Highly recommend",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      }
+    ]
+  },
+  {
+    "title": "Flannel Shirt",
+    "regularPrice": 101.23,
+    "salePrice": 88.15,
+    "isOnSale": true,
+    "category": "Outerwear",
+    "variants": [
+      {
+        "colorName": "Gray",
+        "quantity": 31,
+        "sizes": [
+          {
+            "men": 11,
+            "woman": 15
+          },
+          {
+            "men": 15,
+            "woman": 16
+          }
+        ],
+        "images": [
+          "https://placehold.co/600x400"
+        ]
+      }
+    ],
+    "reviews": [
+      {
+        "starRating": 3,
+        "title": "Not bad",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 3,
+        "title": "Good quality",
+        "description": "Fits well and feels great.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 5,
+        "title": "Disappointed",
+        "description": "Durability could be better.",
+        "authorId": "1234"
+      },
+      {
+        "starRating": 2,
+        "title": "Not bad",
+        "description": "Color is slightly off from pictures.",
+        "authorId": "1234"
+      }
+    ]
+  }
+]

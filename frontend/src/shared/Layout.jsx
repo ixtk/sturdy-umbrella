@@ -5,8 +5,10 @@ export const Layout = () => {
   return (
     <>
       <Header />
-      <main className="container">
-        <Outlet />
+      <main>
+        <div className="container">
+          <Outlet />
+        </div>
       </main>
     </>
   )

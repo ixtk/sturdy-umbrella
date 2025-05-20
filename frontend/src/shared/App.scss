@@ -130,7 +130,19 @@ span {
   color: var(--white);
 }
 
+.badge-secondary {
+  background-color: var(--gray-100);
+}
+
+.badge-outline {
+  border: 1px solid var(--gray-300);
+}
+
 // Rest of the app
+
+.page-title {
+  margin-bottom: 1.2rem;
+}
 
 @keyframes spin {
   0% {
