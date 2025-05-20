@@ -9,6 +9,7 @@ export const ProductsPage = () => {
         {products.map((product, index) => (
           <ProductCard
             key={index}
+            id={index}
             category={product.category}
             title={product.title}
             regularPrice={product.regularPrice}

@@ -47,31 +47,19 @@
       {
         "starRating": 2,
         "title": "Disappointed",
-        "description": "Color is slightly off from pictures.",
+        "description": "The color shown in the images looked much richer and deeper, but in person it's noticeably duller and lacks the vibrancy I was expecting. This was a letdown since color was a big factor in my decision to buy.",
         "authorId": "1234"
       },
       {
         "starRating": 4,
         "title": "Would buy again",
-        "description": "Very happy with this purchase.",
+        "description": "I'm very happy with this purchase. The hoodie fits nicely and the material feels soft against the skin. After a few washes, it’s still holding up well and hasn’t shrunk or faded noticeably.",
         "authorId": "1234"
       },
       {
         "starRating": 2,
         "title": "Disappointed",
-        "description": "Durability could be better.",
-        "authorId": "1234"
-      },
-      {
-        "starRating": 4,
-        "title": "Would buy again",
-        "description": "Fits well and feels great.",
-        "authorId": "1234"
-      },
-      {
-        "starRating": 4,
-        "title": "Not bad",
-        "description": "Very happy with this purchase.",
+        "description": "After just two weeks of casual wear, the fabric already shows signs of pilling, especially around the sleeves and torso. I expected a bit more durability for the price I paid.",
         "authorId": "1234"
       }
     ]

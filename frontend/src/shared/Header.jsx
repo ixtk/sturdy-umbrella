@@ -55,15 +55,19 @@ export const Header = () => {
         </nav>
         <div className="profile-actions">
           <p className="username">{authState?.user?.username}</p>
-          <button className="btn btn-outline" onClick={logout}>
-            Logout
-          </button>
-          <button
-            className="btn btn-icon"
-            onClick={() => setCartOpen(!cartOpen)}
-          >
-            <ShoppingCart />
-          </button>
+          {authState.user && (
+            <>
+              <button className="btn btn-outline" onClick={logout}>
+                Logout
+              </button>
+              <button
+                className="btn btn-icon"
+                onClick={() => setCartOpen(!cartOpen)}
+              >
+                <ShoppingCart />
+              </button>
+            </>
+          )}
         </div>
         {cartOpen && (
           <div className="cart card">

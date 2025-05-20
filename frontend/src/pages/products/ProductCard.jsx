@@ -1,7 +1,9 @@
 import "./Products.scss"
+import { Link } from "react-router"
 
 export const ProductCard = ({
   imageUrl,
+  id,
   title,
   category,
   regularPrice,
@@ -11,7 +13,7 @@ export const ProductCard = ({
   return (
     <div className="product-card">
       <img src={imageUrl} />
-      <h3 className="title">{title}</h3>
+      <h3 className="title"><Link to={`/products/${id}`}>{title}</Link></h3>
       <p className="category">{category}</p>
       <div className="price-col">
         <div className="price-container">
