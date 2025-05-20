@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Pullover Hoodie",
+    "category": "Tops",
+    "price": 49.99,
+    "quantity": 2,
+    "imageUrl": "https://placehold.co/100x100"
+  },
+  {
+    "title": "Canvas Backpack",
+    "category": "Accessories",
+    "price": 74.50,
+    "quantity": 1,
+    "imageUrl": "https://placehold.co/100x100"
+  }
+]

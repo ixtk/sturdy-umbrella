@@ -1,5 +1,6 @@
 @use "reset";
 @use "Auth";
+@use "Header";
 
 body {
   font-family: 'Geist', sans-serif;
@@ -60,6 +61,20 @@ html, body, #root {
 .btn-primary {
   background-color: var(--purple-700);
   color: var(--white);
+}
+
+.btn-icon {
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--gray-300);
+  padding: 10px;
+  border-radius: 100%;
 }
 
 .btn-primary:hover {
@@ -164,20 +179,5 @@ span {
     height: 100px;
     color: var(--gray-300);
     animation: spin 2s linear infinite;
-  }
-}
-
-header ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-
-  li a {
-    padding: 5px 10px 5px 0;
-  }
-
-  li a.active {
-    color: var(--purple-900);
   }
 }

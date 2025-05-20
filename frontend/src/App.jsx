@@ -3,7 +3,6 @@ import { Route, Routes, Navigate, Outlet } from "react-router"
 import { useContext } from "react"
 import { AuthContext } from "@/lib/AuthContext.jsx"
 import { Layout } from "@/shared/Layout.jsx"
-import { HomePage } from "@/pages/home/HomePage.jsx"
 import { LoginPage } from "@/pages/login/LoginPage.jsx"
 import { RegisterPage } from "@/pages/register/RegisterPage.jsx"
 import { LoaderCircle } from "lucide-react"
@@ -49,7 +48,7 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<Navigate to="/products" replace />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route element={<RedirectIfLoggedIn />}>
           <Route path="/login" element={<LoginPage />} />
