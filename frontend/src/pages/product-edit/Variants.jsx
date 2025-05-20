@@ -16,12 +16,12 @@ export default function VariantsSection({ values, setFieldValue }) {
   // ამ ფუნქციით ვამატებთ ფოტოს. ფაილს ვკითხულობთ და ვამატებთ სთეითში.
   return (
     <FieldArray name="variants">
-      {/* FieldArray გვაძლევს საშუალებას ვიმუშაოთ სიებთან და გვაძლევს დამატება და წაშლის ფუნქციებს. name="variants" არის ის სია რომელზეც მუშაობა გვინდა. existing-product.json-ში ერთ-ერთი key არის variants რომლის მნიშვნელობაც არის სია, სწორედ ამ სიასთან გვინდა მუშაობა. */}
       {({ push, remove }) => (
-        <>
+        <div className="variants">
           <div className="variants-header">
-            <h1>Variants</h1>
+            <h2>Variants</h2>
             <button
+              className="btn btn-primary btn-with-icon"
               type="button"
               onClick={() =>
                 push({
@@ -32,52 +32,45 @@ export default function VariantsSection({ values, setFieldValue }) {
                 })
               }
             >
-              <Plus className="lucide-icon" /> Add Variant
-              {/* ამ ღილაკით ვამატებთ existing-product.json-ში ახალ ობიექტს, სადაც საწყისი მნიშვნელობები ცარიელია */}
+              <Plus size={18} /> <span>Add Variant</span>
             </button>
           </div>
 
           {values.variants.map((variant, index) => (
-            <div className="variants" key={index}>
-              <div className="variant-details">
-                <p>Variant Details</p>
+            <div className="variant-section" key={index}>
+              <div className="variant-header">
+                <h3>Variant Details</h3>
                 <button
-                  className="remove-variant-btn"
+                  className="btn btn-icon remove-btn btn-danger"
+                  type="button"
                   onClick={() => remove(index)}
                 >
-                  <Trash className="lucide-icon" />
+                  <Trash size={18} />
                 </button>
-                {/* remove(index) არის FieldArray-ს ფუნქცია რომელიც შლის ვარიანტს შესაბამისი ინდექსის მიხედვით */}
               </div>
 
-              <div className="colorName-quantity-images">
-                <div className="colorName">
-                  <p>Color Name</p>
-                  <Field
-                    className="color-name-input"
-                    name={`variants[${index}].colorName`}
-                    type="text"
-                  />
+              <div className="form-row wrap">
+                <div className="form-group third">
+                  <label>Color Name</label>
+                  <Field name={`variants[${index}].colorName`} type="text" />
                 </div>
-                <div className="quantity">
-                  <p>Stock Quantity</p>
+                <div className="form-group third">
+                  <label>Stock Quantity</label>
                   <Field
-                    className="stock-quantity-input"
                     name={`variants[${index}].stockQuantity`}
                     type="number"
                   />
-                  {/* [${index}] გვეხმარება შესაბამისი ინდექსის შესაბამისი item შევცვალოთ ამ შემთხვევაში stockQuantity */}
                 </div>
-                <div className="uploadImages">
-                  <p>Images</p>
+                <div className="form-group third">
+                  <label>Images</label>
                   <button
-                    className="uploadImages-btn"
+                    className="btn btn-outline btn-with-icon"
                     type="button"
                     onClick={() =>
                       document.getElementById(`image-upload-${index}`).click()
                     }
                   >
-                    <Upload className="lucide-icon" /> Upload Images
+                    <Upload size={18} /> <span>Upload Images</span>
                   </button>
                   <input
                     type="file"
@@ -86,18 +79,20 @@ export default function VariantsSection({ values, setFieldValue }) {
                     style={{ display: "none" }}
                     id={`image-upload-${index}`}
                   />
-                  {/* ამ ინპუტით ვამატებთ ფოტოს. თვითონ ინპუტი არ ჩანს და ღილაკს რომ დავაჭერთ მაშინ შეგვიძლია ფოტოს დამატება */}
                 </div>
-
-                <div className="image-previews">
-                  <p>Image Previews</p>
-                  {variant.images.length > 0 && (
-                    <div className="image-thumbnails">
+                {variant.images.length > 0 && (
+                  <div className="form-group">
+                    <label>Image Previews</label>
+                    <div className="image-grid">
                       {variant.images.map((image, id) => (
-                        <div key={id} className="image-thumbnail">
-                          <img src={image} />
+                        <div key={id} className="image-item">
+                          <img
+                            src={image}
+                            alt={`Variant ${index} preview ${id}`}
+                          />
                           <button
                             type="button"
+                            className="btn btn-icon btn-danger remove-image"
                             onClick={() => {
                               const updatedImages = variant.images.filter(
                                 (_, i) => i !== id
@@ -108,82 +103,77 @@ export default function VariantsSection({ values, setFieldValue }) {
                               )
                             }}
                           >
-                            <X className="lucide-icon" />
+                            <X size={18} />
                           </button>
-                          {/* ამ ღილაკით შეგვიძლია წავშალოთ ფოტო. id-ის მიხედვით ვპოულობთ ფოტოს სთეითში და ვშლით */}
                         </div>
                       ))}
                     </div>
+                  </div>
+                )}{" "}
+                <FieldArray name={`variants[${index}].availableSizes`}>
+                  {({ push, remove }) => (
+                    <div className="form-group">
+                      <label>Available Sizes</label>
+
+                      {variant.availableSizes.map((size, sizeIndex) => (
+                        <div key={sizeIndex} className="sizes-row">
+                          <div className="form-group">
+                            <label>Men's Size</label>
+                            <Field
+                              name={`variants[${index}].availableSizes[${sizeIndex}].mensSize`}
+                              type="text"
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label>Women's Size</label>
+                            <Field
+                              name={`variants[${index}].availableSizes[${sizeIndex}].womensSize`}
+                              type="text"
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            className="btn btn-icon btn-danger remove-btn"
+                            onClick={() => remove(sizeIndex)}
+                          >
+                            <X size={18} />
+                          </button>
+                        </div>
+                      ))}
+
+                      <button
+                        type="button"
+                        className="btn btn-outline btn-with-icon add-size"
+                        onClick={() => push({ mensSize: "", womensSize: "" })}
+                      >
+                        <Plus size={18} /> <span>Add Size</span>
+                      </button>
+
+                      {variant.availableSizes.length > 0 && (
+                        <div className="size-summary">
+                          <label className="size-summary-label">
+                            Size Summary
+                          </label>
+                          <div className="size-badges">
+                            {variant.availableSizes.map((size, idx) => (
+                              <div key={idx} className="badge badge-outline">
+                                <span>
+                                  {size.mensSize && `M ${size.mensSize}`}
+                                  {size.mensSize && size.womensSize && " / "}
+                                  {size.womensSize && `W ${size.womensSize}`}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   )}
-                </div>
-              </div>
-
-              <div className="sizes">
-                <div className="available-sizes">
-                  <p>Available Sizes</p>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setFieldValue(`variants[${index}].availableSizes`, [
-                        ...variant.availableSizes,
-                        { mensSize: "", womensSize: "" }
-                      ])
-                    }
-                  >
-                    <Plus className="lucide-icon" /> Add Size
-                    {/* ამ ღილაკით ვამატებთ ახალ ზომას. */}
-                  </button>
-                </div>
-
-                {variant.availableSizes.map((size, sizeIndex) => (
-                  <div className="men-women-size" key={sizeIndex}>
-                    <div className="men-size">
-                      <p>Men's Size</p>
-                      <Field
-                        className="mens-size-input"
-                        name={`variants[${index}].availableSizes[${sizeIndex}].mensSize`}
-                        type="number"
-                      />
-                    </div>
-                    <div className="women-size">
-                      <p>Women's Size</p>
-                      <Field
-                        className="womens-size-input"
-                        name={`variants[${index}].availableSizes[${sizeIndex}].womensSize`}
-                        type="number"
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setFieldValue(
-                          `variants[${index}].availableSizes`,
-                          variant.availableSizes.filter(
-                            (size, i) => i !== sizeIndex
-                          )
-                        )
-                      }
-                    >
-                      <X className="lucide-icon" />
-                    </button>
-                    {/* ეს ღილაკი შლის ზომას შემდეგნაირად: ფილტრით აკეთებს ახალ სიას, სადაც შესაბამის ინდექსზე მყოფი ზომა აღარ იქნება */}
-                  </div>
-                ))}
-              </div>
-
-              <p className="size-summary-header">Size Summary</p>
-              <div className="size-summary">
-                {variant.availableSizes.map((size, i) => (
-                  <div key={i}>
-                    <p>
-                      M {size.mensSize}/W {size.womensSize}
-                    </p>
-                  </div>
-                ))}
+                </FieldArray>
               </div>
             </div>
           ))}
-        </>
+        </div>
       )}
     </FieldArray>
   )

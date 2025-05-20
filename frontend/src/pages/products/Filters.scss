@@ -6,7 +6,7 @@
 .filter-group {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--cool-gray-200);
 }
 
 .filter-group h3 {
@@ -21,7 +21,7 @@
   align-items: center;
   margin: 0.5rem 0;
   font-size: 0.95rem;
-  color: #333;
+  color: var(--slate-900);
 }
 
 .filter-group.color-group label {
@@ -39,66 +39,74 @@
   border-radius: 50%;
 }
 
-.black { background-color: black; }
-.white { background-color: white; }
-.navy { background-color: navy; }
-.brown { background-color: brown; }
-.red { background-color: red; }
-.blue { background-color: blue; }
-.green { background-color: green; }
-.gray { background-color: gray; }
+.black {
+  background-color: var(--black);
+}
+.white {
+  background-color: var(--white);
+}
+.navy {
+  background-color: navy;
+}
+.brown {
+  background-color: brown;
+}
+.red {
+  background-color: red;
+}
+.blue {
+  background-color: blue;
+}
+.green {
+  background-color: green;
+}
+.gray {
+  background-color: gray;
+}
 
 .size-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
 }
 
 .size-grid button {
   padding: 0.5rem 1rem;
-  background: white;
-  border: 1px solid gray;
+  background: var(--white);
+  border: 1px solid var(--cool-gray-500);
   cursor: pointer;
   font-size: 1rem;
   text-align: center;
 }
 
 .size-grid button:hover {
-  background-color: #ddd;
+  background-color: var(--cool-gray-100);
 }
-
 
 @media (max-width: 768px) {
   .size-grid {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
   .size-grid {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
   }
 }
-
 
 .filter-group input[type="checkbox"] {
   margin-right: 10px;
 }
 
 .filter-group span {
-  color: #555;
+  color: var(--cool-gray-500);
   font-size: 0.9rem;
 }
-
 
 button {
   padding: 0.5rem 1rem;
   border: none;
-  background-color: #ddd;
+  background-color: var(--cool-gray-100);
   cursor: pointer;
 }
-
-button:hover {
-  background-color: #bbb;
-}
-

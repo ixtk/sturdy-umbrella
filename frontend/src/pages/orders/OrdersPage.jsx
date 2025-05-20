@@ -57,9 +57,9 @@ export const OrdersPage = () => {
     { title: "Cancelled", value: "Cancelled", hideOnSmall: true }
   ]
   return (
-    <div className="orders-page">
+    <div>
       <h1>Order Management</h1>
-      {/* //!დიდი ოთხი ღილაკი */}
+
       <div className="summary-boxes">
         <div className="box total-orders">
           <Package2 className="icon" />
@@ -93,143 +93,91 @@ export const OrdersPage = () => {
           </div>
         </div>
       </div>
-      {/* //!--------------------- */}
 
-      {/* //! სტრიქონი search-bar-ით და selector-ებით */}
       <div className="filters-row">
         <div className="search-wrapper">
           <Search />
-          <input
-            type="text"
-            placeholder="Search orders..."
-            className="searchBar"
-          />
+          <input type="text" placeholder="Search orders..." />
         </div>
-        <select>
-          <option>All Status</option>
-          <option>Completed</option>
-          <option>Processing</option>
-          <option>Shipped</option>
-          <option>Cancelled</option>
-        </select>
-        <select>
-          <option>All Time</option>
-          <option>Today</option>
-          <option>This Week</option>
-          <option>This Month</option>
-        </select>
-      </div>
-      {/* //!--------------------- */}
 
-      {/* //!შეკვეთის სტატუსის მოსანიშნი ღილაკების სტრიქონი */}
-      <div className="status-tabs">
-        {statusButtons.map(btnObj => (
-          <button
-            key={btnObj.value}
-            onClick={() => {
-              setStatusFilter(btnObj.value) //ღილაკზე დაჭერისას სტატუსს ვანახლებთ, უხდება მითითებული სტატუსი
-              setCurrentPage(1) //სტატუსის ღილაკზე დაჭერისას დაგვაბრუნებს პირველ გვერდზე
-            }}
-            className={clsx(
-              statusFilter === btnObj.value && "active", //ვანიჭებთ კლასის სახელს, რომ თუ მისი სტატუსი იქნება all , მაშინ მიენიჭოს კლასი active, რასაც css-ში ვიყენებთ მონიშნული ღილაკისთვის განსხვავებული ფონის მისანიჭებლად
-              btnObj.hideOnSmall && "hide-on-small"
-            )}
-          >
-            {btnObj.title} ({statusCounts[btnObj.value]}){" "}
-            {/* გამოგვაქვს რაოდენობა იმ კატეგორიის შეკვეთებისა, რომელსაც ხელი დავაჭირეთ */}
-          </button>
-        ))}
+        <div className="status-filters">
+          {statusButtons.map(button => (
+            <button
+              key={button.value}
+              onClick={() => setStatusFilter(button.value)}
+              className={clsx(
+                "btn",
+                statusFilter === button.value ? "btn btn-outline" : "",
+                button.hideOnSmall && "hide-on-small"
+              )}
+            >
+              {button.title}
+              <span></span>
+            </button>
+          ))}
+        </div>
       </div>
-      {/* //!--------------------- */}
 
-      {/* //! ცხრილი */}
-      <div className="orders-container">
-        <table className="orders-table">
+      <div className="card orders-table">
+        <table>
           <thead>
             <tr>
               <th>Order ID</th>
-              <th>Customer</th>
-              <th>Email</th>
               <th>Date</th>
+              <th>Customer</th>
+              <th>Total</th>
               <th>Status</th>
-              <th>Items</th>
-              <th>Total ($)</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {currentOrders.map(order => (
               <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.email}</td>
-                <td>{order.customer}</td>
+                <td>#{order.id}</td>
                 <td>{order.date}</td>
+                <td>{order.customer}</td>
+                <td>${order.total.toFixed(2)}</td>
                 <td>
-                  <button className={`status ${order.status.toLowerCase()}`}>
-                    {" "}
-                    {order.status}{" "}
-                  </button>
-                  {/* order.status შეიძლება იყოს "Completed", "Processing","Cancelled"... და ამ სტატუსის სახელს ყველას პატარა ასოებად 
-                გადააქცევს -toLowerCase , რაც საშუალებას გვაძლევს სხვადასხვა სტატუსის ღილაკებს სხვადასხვა კლასი მივანიჭოთ, შესაბამისად სხვადასხვა დიზაინი */}
+                  <span
+                    className={clsx("badge", {
+                      "badge-success": order.status === "Completed",
+                      "badge-danger": order.status === "Cancelled",
+                      "badge-secondary": order.status === "Processing",
+                      "badge-outline": order.status === "Shipped"
+                    })}
+                  >
+                    {order.status}
+                  </span>
                 </td>
-                <td>{order.items}</td>
-                <td>${order.total.toFixed(2)}</td>{" "}
-                {/* საბოლოო თანხა თუ არამთელი რიცხვი იქნება , ისეთი რომელსაც მძიმის მერე 2 ზე მეტი ციფრი აქვს ეს ფუნქცია 2 ციფრამდე მიყვანს  */}
-                <td>{order.actions}</td>
+                <td>
+                  <button
+                    className="btn btn-icon"
+                    style={{ textAlign: "center" }}
+                  >
+                    ...
+                    {/* <Search className="icon" /> */}
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {/* //!--------------------- */}
-
-        {/* //! ცხრილი პატარა ეკრანზე*/}
-        <div className="orders-cards">
-          {currentOrders.map(order => (
-            <div className="order-card" key={order.id}>
-              <div className="order-header">
-                <strong>{order.id}</strong>
-                <span className={`status-badge ${order.status.toLowerCase()}`}>
-                  {order.status}
-                </span>
-              </div>
-              <div className="order-body">
-                <p>
-                  <strong>{order.customer}</strong>
-                </p>
-                <p>{order.email}</p>
-                <p>Date: {order.date}</p>
-                <p>Items: {order.items}</p>
-                <p>
-                  <strong>Total: ${order.total.toFixed(2)}</strong>
-                </p>
-              </div>
-              <div className="order-footer">
-                <button>Actions</button>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
-      {/* //!--------------------- */}
 
-      {/* //! ცხრილის პაგინაცია */}
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, idx) => idx + 1).map(
-          (
-            page //Array.from ქმნის მასივს, რომლის სიგრძეც არის totalPages, და ეს მასივი ინახავს ღილაკებს
-          ) => (
-            // ციფრებით რომელ გვერდზეც ვართ ამიტომაც მათი რაოდენობა უნდა იყოს ტოლი totalPages რაოდენობის.
-            <button
-              key={page}
-              className={page === currentPage ? "activPage" : "numbers"} // თუ იმ გვერდზე ვიქნებით, რომელ ღილაკზეც გვაქვს დაჭერილი გვინდა განსხვავებული კლასი მივანიჭოთ.
-              onClick={() => handlePageChange(page)}
-            >
-              {page}
-            </button>
-          )
-        )}
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            className={clsx(
+              "btn",
+              currentPage === index + 1 ? "btn-primary" : "btn-outline"
+            )}
+          >
+            {index + 1}
+          </button>
+        ))}
       </div>
-      {/* //!--------------------- */}
     </div>
   )
 }

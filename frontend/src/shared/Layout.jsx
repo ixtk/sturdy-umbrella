@@ -19,7 +19,7 @@ export const Layout = () => {
   return (
     <>
       <header>
-        <nav>
+        <nav className="container">
           <Link to="/">Home</Link>
           {authState.user ? (
             <>
@@ -28,7 +28,9 @@ export const Layout = () => {
               <Link to="/products">Products</Link>
               <Link to="/products/1">Demo product</Link>
               <Link to="/products/1/edit">Edit demo product</Link>
-              <button onClick={logout}>Logout</button>
+              <button className="btn btn-outline" onClick={logout}>
+                Logout
+              </button>
             </>
           ) : (
             <>
@@ -38,7 +40,7 @@ export const Layout = () => {
           )}
         </nav>
       </header>
-      <main>
+      <main className="container">
         <Outlet />
       </main>
     </>

@@ -1,7 +1,7 @@
 export const Form = ({ title, description, fields, onSubmit, form }) => {
   return (
-    <div className="form-container">
-      <form className="auth-form" onSubmit={form.handleSubmit}>
+    <div className="container">
+      <form className="card auth-form" onSubmit={form.handleSubmit}>
         <h2 className="form-title">{title}</h2>
         <p className="form-desc">{description}</p>
         {fields.map(field => {
@@ -12,14 +12,15 @@ export const Form = ({ title, description, fields, onSubmit, form }) => {
                 {...form.getFieldProps(field.name)}
                 placeholder={field.placeholder}
                 type={field.type}
+                className="input"
               />
-              <span className="error">
+              <span className="badge error">
                 {form.touched[field.name] && form.errors[field.name]}
               </span>
             </div>
           )
         })}
-        <button className="submit-btn">{title}</button>
+        <button className="btn btn-primary">{title}</button>
       </form>
     </div>
   )

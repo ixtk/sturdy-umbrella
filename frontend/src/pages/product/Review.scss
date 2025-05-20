@@ -12,10 +12,10 @@
 }
 
 .review-form {
-  background: #f9f9f9;
+  background: var(--cool-gray-50);
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
   margin-bottom: 2rem;
 }
 
@@ -40,12 +40,14 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  color: #ccc;
-  transition: transform 0.2s, color 0.2s;
+  color: var(--cool-gray-200);
+  transition:
+    transform 0.2s,
+    color 0.2s;
 }
 
 .stars button.filled {
-  color: #000;
+  color: var(--black);
 }
 
 .stars button:hover {
@@ -57,8 +59,8 @@
   width: 100%;
   padding: 0.5rem;
   margin-top: 0.3rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid var(--cool-gray-200);
+  border-radius: var(--border-radius);
 }
 
 .review-form textarea {
@@ -81,12 +83,12 @@
 }
 
 .buttons button[type="button"] {
-  background-color: #eee;
+  background-color: var(--cool-gray-100);
 }
 
 .buttons button[type="submit"] {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--black);
+  color: var(--white);
 }
 
 .submitted-reviews h3 {
@@ -94,7 +96,7 @@
 }
 
 .review-card {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--cool-gray-200);
   padding: 1rem 0;
 }
 

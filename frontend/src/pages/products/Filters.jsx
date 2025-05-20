@@ -1,8 +1,8 @@
 import "./Filters.scss"
 
 function App() {
-    return (
-        <aside className="filter-sidebar">
+  return (
+    <aside className="card filter-sidebar">
       {/* Gender Section */}
       <div className="filter-group">
         <h3>Gender</h3>
@@ -11,21 +11,21 @@ function App() {
             <input type="checkbox" />
             Men
           </span>
-          <span>(142)</span>
+          <span className="badge badge-outline">(142)</span>
         </label>
         <label>
           <span>
             <input type="checkbox" />
             Women
           </span>
-          <span>(156)</span>
+          <span className="badge badge-outline">(156)</span>
         </label>
         <label>
           <span>
             <input type="checkbox" />
             Unisex
           </span>
-          <span>(24)</span>
+          <span className="badge badge-outline">(24)</span>
         </label>
       </div>
 
@@ -37,21 +37,21 @@ function App() {
             <input type="checkbox" />
             On Sale
           </span>
-          <span>(36)</span>
+          <span className="badge badge-success">(36)</span>
         </label>
         <label>
           <span>
             <input type="checkbox" />
             Special Offer
           </span>
-          <span>(12)</span>
+          <span className="badge badge-secondary">(12)</span>
         </label>
         <label>
           <span>
             <input type="checkbox" />
             Clearance
           </span>
-          <span>(8)</span>
+          <span className="badge badge-danger">(8)</span>
         </label>
       </div>
 
@@ -63,56 +63,56 @@ function App() {
             <span className="color-dot black"></span>
             Black
           </span>
-          <span>(45)</span>
+          <span className="badge">(45)</span>
         </label>
         <label>
           <span>
             <span className="color-dot white"></span>
             White
           </span>
-          <span>(32)</span>
+          <span className="badge">(32)</span>
         </label>
         <label>
           <span>
             <span className="color-dot navy"></span>
             Navy
           </span>
-          <span>(28)</span>
+          <span className="badge">(28)</span>
         </label>
         <label>
           <span>
             <span className="color-dot brown"></span>
             Brown
           </span>
-          <span>(24)</span>
+          <span className="badge">(24)</span>
         </label>
         <label>
           <span>
             <span className="color-dot red"></span>
             Red
           </span>
-          <span>(18)</span>
+          <span className="badge">(18)</span>
         </label>
         <label>
           <span>
             <span className="color-dot blue"></span>
             Blue
           </span>
-          <span>(22)</span>
+          <span className="badge">(22)</span>
         </label>
         <label>
           <span>
             <span className="color-dot green"></span>
             Green
           </span>
-          <span>(16)</span>
+          <span className="badge">(16)</span>
         </label>
         <label>
           <span>
             <span className="color-dot gray"></span>
             Gray
           </span>
-          <span>(20)</span>
+          <span className="badge">(20)</span>
         </label>
       </div>
 
@@ -124,35 +124,35 @@ function App() {
             <input type="checkbox" />
             Under $25
           </span>
-          <span>(5)</span>
+          <span className="badge">(5)</span>
         </label>
         <label>
           <span>
             <input type="checkbox" />
             $25 - $50
           </span>
-          <span>(28)</span>
+          <span className="badge">(28)</span>
         </label>
         <label>
           <span>
             <input type="checkbox" />
             $50 - $100
           </span>
-          <span>(42)</span>
+          <span className="badge">(42)</span>
         </label>
         <label>
           <span>
             <input type="checkbox" />
             $100 - $150
           </span>
-          <span>(36)</span>
+          <span className="badge">(36)</span>
         </label>
         <label>
           <span>
             <input type="checkbox" />
             $150+
           </span>
-          <span>(12)</span>
+          <span className="badge">(12)</span>
         </label>
       </div>
 
@@ -176,7 +176,7 @@ function App() {
         </div>
       </div>
     </aside>
-    );
+  )
 }
 
 export default App

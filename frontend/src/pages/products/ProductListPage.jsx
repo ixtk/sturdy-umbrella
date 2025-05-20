@@ -15,23 +15,37 @@ export const ProductListPage = () => {
   }, [])
 
   return (
-    <>
+    <div className="container">
       <Filters />
       <div className="product-list">
         {products.map(product => (
-          <div key={product.id} className="product-card">
+          <div key={product.id} className="card product-card">
             <img src="https://i.imgur.com/EJLFNOwg.jpg" alt={product.name} />
             <h3>{product.name}</h3>
             <p>{product.description}</p>
-            <p className="cat">Categorry: {product.category}</p>
-            <p className="price">
-              Price: ${product.price}
-              <span>{product.originalPrice}</span>
+            <p className="cat">
+              Category: <span className="badge">{product.category}</span>
             </p>
-            <p className="colors">Colors: {product.colors}</p>
+            <p className="price">
+              Price:{" "}
+              <span className="badge badge-success">${product.price}</span>
+              {product.originalPrice && (
+                <span className="badge badge-outline">
+                  ${product.originalPrice}
+                </span>
+              )}
+            </p>
+            <p className="colors">
+              Colors:{" "}
+              {/* {product.colors.split(",").map(color => (
+                <span key={color} className="badge badge-secondary">
+                  {color.trim()}
+                </span>
+              ))} */}
+            </p>
           </div>
         ))}
       </div>
-    </>
+    </div>
   )
 }

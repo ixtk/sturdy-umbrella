@@ -56,15 +56,15 @@ const Review = () => {
   }
 
   return (
-    <div className="review-container">
+    <div className="container">
       {!showForm && (
-        <button onClick={() => setShowForm(true)} className="show-form-button">
+        <button onClick={() => setShowForm(true)} className="btn btn-primary">
           Write a Review
         </button>
       )}
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="review-form">
+        <form onSubmit={handleSubmit} className="card review-form">
           <h3>Write Your Review</h3>
           <label>Rating</label>
           <div className="stars">
@@ -75,11 +75,11 @@ const Review = () => {
                 onClick={() => handleStarClick(star)}
                 onMouseEnter={() => setHoveredStar(star)}
                 onMouseLeave={() => setHoveredStar(0)}
-                className={
+                className={`btn btn-icon ${
                   star <= (hoveredStar || newReview.stars)
                     ? "star filled"
                     : "star"
-                }
+                }`}
                 aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
               >
                 <Star size={24} />
@@ -94,6 +94,7 @@ const Review = () => {
             placeholder="Summarize your experience"
             value={newReview.headline}
             onChange={handleChange}
+            className="input"
           />
           <label>Review</label>
           <textarea
@@ -101,31 +102,39 @@ const Review = () => {
             placeholder="Share your experience with this product"
             value={newReview.text}
             onChange={handleChange}
+            className="input"
           />
+
           <div className="buttons">
-            <button type="button" onClick={handleCancel}>
+            <button
+              type="button"
+              onClick={handleCancel}
+              className="btn btn-outline"
+            >
               Cancel
             </button>
-            <button type="submit">Submit Review</button>
+            <button type="submit" className="btn btn-primary">
+              Submit Review
+            </button>
           </div>
         </form>
       )}
 
       <div className="submitted-reviews">
         <h3>Customer Reviews</h3>
-        {reviews.map(rev => (
-          <div key={rev.id} className="review-card">
+        {reviews.map(review => (
+          <div key={review.id} className="card review-card">
             <div className="review-stars">
-              {[1, 2, 3, 4, 5].map(star => (
+              {[...Array(5)].map((_, i) => (
                 <Star
-                  key={star}
-                  size={20}
-                  className={star <= rev.stars ? "star filled" : "star"}
+                  key={i}
+                  size={16}
+                  className={`star ${i < review.stars ? "filled" : ""}`}
                 />
               ))}
             </div>
-            <strong>{rev.headline}</strong>
-            <p>{rev.text}</p>
+            <h4>{review.headline}</h4>
+            <p>{review.text}</p>
           </div>
         ))}
       </div>
