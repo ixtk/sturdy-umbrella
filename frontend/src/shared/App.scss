@@ -42,6 +42,10 @@ html, body, #root {
   main {
     flex-grow: 1;
   }
+
+  main > div {
+    padding-bottom: 3rem;
+  }
 }
 
 .container {

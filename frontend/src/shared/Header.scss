@@ -35,8 +35,10 @@ header {
 .cart {
   position: absolute;
   right: 16px;
+  max-width: 400px;
+  margin-left: auto;
   left: 16px;
-  top: 4.75rem;
+  top: 4.5rem;
   display: flex;
   flex-direction: column;
   gap: 17px;
