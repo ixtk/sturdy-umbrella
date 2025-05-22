@@ -1,17 +1,27 @@
 import { Reviews } from "@/pages/product/Reviews.jsx"
 import "./Product.scss"
 import { useParams } from "react-router"
-import products from "@/mock-data/products.json"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "@/lib/AuthContext.jsx"
 import { Minus, Plus } from "lucide-react"
+import { axiosInstance } from "@/lib/axiosInstance.js"
 
 export const ProductPage = () => {
   const { productId } = useParams()
   const { authState } = useContext(AuthContext)
   const [itemQuantity, setItemQuantity] = useState(1)
 
-  const product = products.find((product, i) => i === Number(productId))
+  const [product, setProduct] = useState({})
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const response = await axiosInstance.get(`/products/${productId}`)
+
+      setProduct(response.data)
+    }
+
+    fetchProduct()
+  }, [productId])
 
   return (
     <div>
@@ -55,7 +65,7 @@ export const ProductPage = () => {
         </div>
       </div>
       <div className="divider"></div>
-      <Reviews reviews={product.reviews} />
+      <Reviews reviews={product.reviews ?? []} />
     </div>
   )
 }
