@@ -95,6 +95,36 @@
   }
 }
 
+.thumbnail img {
+  border-radius: var(--border-radius);
+}
+
+.quantity-container {
+  display: flex;
+  max-width: 100px;
+  text-align: center;
+  gap: 8px;
+  margin: 1rem 0;
+  align-items: center;
+
+  button {
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input {
+    text-align: center;
+    height: 35px;
+  }
+
+  input, button {
+    flex: 1;
+  }
+}
+
 @media screen and (min-width: 800px) {
   .product-container {
     flex-direction: row;
