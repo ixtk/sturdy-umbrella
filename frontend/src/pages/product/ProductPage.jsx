@@ -2,9 +2,12 @@ import { Reviews } from "@/pages/product/Reviews.jsx"
 import "./Product.scss"
 import { useParams } from "react-router"
 import products from "@/mock-data/products.json"
+import { useContext } from "react"
+import { AuthContext } from "@/lib/AuthContext.jsx"
 
 export const ProductPage = () => {
   const { productId } = useParams()
+  const { authState } = useContext(AuthContext)
 
   const product = products.find((product, i) => i === Number(productId))
 
@@ -12,7 +15,7 @@ export const ProductPage = () => {
     <div>
       <div className="product-container">
         <div className="thumbnail">
-          <img src={product.variants[0].images[0]} />
+          <img src={product?.images?.[0]} />
         </div>
         <div className="details">
           <h2 className="title">{product.title}</h2>
@@ -23,7 +26,9 @@ export const ProductPage = () => {
               <p className="sale-price">${product.salePrice}</p>
             )}
           </div>
-          <button className="btn btn-secondary">Add to cart</button>
+          {authState.user && (
+            <button className="btn btn-secondary">Add to cart</button>
+          )}
         </div>
       </div>
       <div className="divider"></div>

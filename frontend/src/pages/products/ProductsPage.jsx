@@ -14,8 +14,7 @@ export const ProductsPage = () => {
             title={product.title}
             regularPrice={product.regularPrice}
             salePrice={product.salePrice}
-            imageUrl={product.variants[0].images[0]}
-            variantNumber={product.variants.length}
+            thumbnail={product?.images?.[0]}
           />
         ))}
       </div>
