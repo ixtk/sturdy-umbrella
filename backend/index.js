@@ -5,6 +5,9 @@ import mongoose from "mongoose"
 import { productRouter } from "./routers/productRouter.js"
 import { userRouter } from "./routers/userRouter.js"
 import cors from "cors"
+import { config } from "dotenv"
+
+config()
 
 export const app = express()
 

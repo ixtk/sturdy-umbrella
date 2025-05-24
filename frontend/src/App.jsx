@@ -3,8 +3,6 @@ import { Route, Routes, Navigate, Outlet } from "react-router"
 import { useContext } from "react"
 import { AuthContext } from "@/lib/AuthContext.jsx"
 import { Layout } from "@/shared/Layout.jsx"
-import { LoginPage } from "@/pages/login/LoginPage.jsx"
-import { RegisterPage } from "@/pages/register/RegisterPage.jsx"
 import { LoaderCircle } from "lucide-react"
 import { ProductsPage } from "@/pages/products/ProductsPage.jsx"
 import { ProductPage } from "@/pages/product/ProductPage.jsx"
@@ -54,8 +52,7 @@ function App() {
         <Route path="/products/:productId" element={<ProductPage />} />
 
         <Route element={<RedirectIfLoggedIn />}>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+        {/*  */}
         </Route>
 
         <Route element={<ProtectedRoute />}>

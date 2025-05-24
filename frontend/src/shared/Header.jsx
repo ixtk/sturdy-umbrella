@@ -1,18 +1,31 @@
 import { NavLink } from "react-router"
 import { useContext, useState } from "react"
 import { AuthContext } from "@/lib/AuthContext.jsx"
-import { axiosInstance } from "@/lib/axiosInstance.js"
 import { ShoppingCart, X } from "lucide-react"
 import cartProducts from "@/mock-data/cartProducts.json"
+import { signInWithPopup, signOut } from "firebase/auth"
+import { auth, provider } from "@/lib/firebase.js"
 
 export const Header = () => {
   const { authState, setAuthState } = useContext(AuthContext)
   const [cartOpen, setCartOpen] = useState(false)
 
   const logout = async () => {
-    await axiosInstance.delete("/users/logout")
+    await signOut(auth)
     setAuthState({
       user: null
+    })
+  }
+
+  const loginWithGoogle = async () => {
+    const result = await signInWithPopup(auth, provider)
+    const user = result.user
+
+    setAuthState({
+      user: {
+        username: user.displayName || user.name,
+        email: user.email
+      }
     })
   }
 
@@ -31,32 +44,23 @@ export const Header = () => {
             {!authState.loading &&
               (authState.user ? (
                 <>
-                  <li>
-                    <NavLink to="/secret">Secret</NavLink>
-                  </li>
-                  {/*<li>*/}
-                  {/*  <NavLink to="/products/1">Demo product</NavLink>*/}
-                  {/*</li>*/}
-                  {/*<li>*/}
-                  {/*  <NavLink to="/products/1/edit">Edit demo product</NavLink>*/}
-                  {/*</li>*/}
+                {/*  */}
                 </>
               ) : (
                 <>
-                  <li>
-                    <NavLink to="/login">Login</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/register">Register</NavLink>
-                  </li>
+                  <button onClick={loginWithGoogle} className="social-btn btn btn-secondary">
+                    <img src="/google-logo.webp" />
+                    <span>Sign in</span>
+                  </button>
                 </>
               ))}
           </ul>
         </nav>
         <div className="profile-actions">
-          <p className="username">{authState?.user?.username}</p>
           {authState.user && (
             <>
+              <p className="username">{authState?.user?.name}</p>
+              <img src={authState.user.picture} className="pfp" />
               <button className="btn btn-outline" onClick={logout}>
                 Logout
               </button>
