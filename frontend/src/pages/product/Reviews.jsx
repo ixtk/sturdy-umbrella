@@ -3,6 +3,11 @@ import { useState } from "react"
 
 export const Reviews = ({ reviews }) => {
   const [writingReview, setWritingReview] = useState(false)
+  const [newReview, setNewReview] = useState({
+    starRating: 0,
+    title: "",
+    description: ""
+  })
 
   const reviewElements = reviews.map((review, index) => (
     <div className="review" key={index}>
@@ -19,6 +24,8 @@ export const Reviews = ({ reviews }) => {
       <p className="description">{review.description}</p>
     </div>
   ))
+
+  console.log(newReview)
 
   return (
     <div>
@@ -38,22 +45,43 @@ export const Reviews = ({ reviews }) => {
           <div className="form-group">
             <label htmlFor="rating">Rating</label>
             <div className="star-container">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <button type="button">
-                  <Star key={i} stroke="#fecd55" />
-                </button>
-              ))}
+              {Array.from({ length: 5 }).map((_, starIndex) => {
+                // starIndex = 0, 1, 2, 3, 4
+                return (
+                  <button
+                    key={starIndex}
+                    type="button"
+                    onClick={() =>
+                      setNewReview({ ...newReview, starRating: starIndex + 1 })
+                    }
+                  >
+                    <Star key={starIndex} stroke="#fecd55" />
+                  </button>
+                )
+              })}
             </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="headline">Headline</label>
-            <input type="text" id="headline" />
+            <input
+              type="text"
+              id="headline"
+              onChange={event =>
+                setNewReview({ ...newReview, title: event.target.value })
+              }
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="description">Review</label>
-            <textarea id="description" rows="3"></textarea>
+            <textarea
+              id="description"
+              rows="3"
+              onChange={event =>
+                setNewReview({ ...newReview, description: event.target.value })
+              }
+            ></textarea>
           </div>
           <div className="btn-container">
             <button
