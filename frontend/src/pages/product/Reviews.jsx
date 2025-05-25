@@ -27,6 +27,13 @@ export const Reviews = ({ reviews }) => {
 
   console.log(newReview)
 
+  const saveReview = event => {
+    event.preventDefault()
+
+    // TODO: send newReview state values to backend, add a new review to THIS product
+    // TODO: using axiosInstance.post
+  }
+
   return (
     <div>
       <div className="reviews-header">
@@ -41,7 +48,7 @@ export const Reviews = ({ reviews }) => {
         )}
       </div>
       {writingReview ? (
-        <form className="card review-form">
+        <form className="card review-form" onSubmit={saveReview}>
           <div className="form-group">
             <label htmlFor="rating">Rating</label>
             <div className="star-container">
