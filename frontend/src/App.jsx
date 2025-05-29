@@ -1,31 +1,22 @@
 import "@/shared/App.scss"
 import { Route, Routes, Navigate, Outlet } from "react-router"
-import { useContext } from "react"
-import { AuthContext } from "@/lib/AuthContext.jsx"
 import { Layout } from "@/shared/Layout.jsx"
-import { LoginPage } from "@/pages/login/LoginPage.jsx"
-import { RegisterPage } from "@/pages/register/RegisterPage.jsx"
-import { LoaderCircle } from "lucide-react"
+// import { LoaderCircle } from "lucide-react"
 import { ProductsPage } from "@/pages/products/ProductsPage.jsx"
 import { ProductPage } from "@/pages/product/ProductPage.jsx"
+import { auth } from "@/lib/firebase.js"
 
-const LoadingSpinner = () => {
-  return (
-    <div className="loading-spinner">
-      <LoaderCircle />
-    </div>
-  )
-}
+// const LoadingSpinner = () => {
+//   return (
+//     <div className="loading-spinner">
+//       <LoaderCircle />
+//     </div>
+//   )
+// }
 
 function App() {
   const ProtectedRoute = () => {
-    const { authState } = useContext(AuthContext)
-
-    if (authState.loading) {
-      return <LoadingSpinner />
-    }
-
-    if (authState.user !== null) {
+    if (auth.currentUser) {
       return <Outlet />
     } else {
       return <Navigate to="/login" />
@@ -33,13 +24,7 @@ function App() {
   }
 
   const RedirectIfLoggedIn = () => {
-    const { authState } = useContext(AuthContext)
-
-    if (authState.loading) {
-      return <LoadingSpinner />
-    }
-
-    if (authState.user !== null) {
+    if (auth.currentUser) {
       return <Navigate to="/" />
     } else {
       return <Outlet />
@@ -54,8 +39,7 @@ function App() {
         <Route path="/products/:productId" element={<ProductPage />} />
 
         <Route element={<RedirectIfLoggedIn />}>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+        {/*  */}
         </Route>
 
         <Route element={<ProtectedRoute />}>

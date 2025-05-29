@@ -3,6 +3,7 @@ header ul {
   margin: 0;
   list-style: none;
   display: flex;
+  align-items: center;
 
   li a {
     padding: 5px 10px 5px 0;
@@ -92,4 +93,46 @@ header {
     margin-left: auto;
     align-self: flex-start;
   }
+}
+
+//header ul,
+//header nav {
+//  width: 100%;
+//}
+
+.social-auth-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.social-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.social-btns img {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+}
+
+.social-btn.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 100%;
+
+  img {
+    max-height: 25px;
+  }
+}
+
+.pfp {
+  max-height: 35px;
+  border-radius: 100%;
 }

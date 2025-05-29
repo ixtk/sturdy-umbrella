@@ -15,26 +15,6 @@ const CartItemSchema = new mongoose.Schema({
 
 const UserSchema = new mongoose.Schema(
   {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      minLength: 3,
-      maxLength: 40
-    },
-    email: {
-      type: String,
-      required: true,
-      lowercase: true,
-      unique: true,
-      minLength: 5,
-      maxLength: 45,
-      match: /^\S+@\S+\.\S+$/
-    },
-    password: {
-      type: String,
-      required: true
-    },
     role: {
       type: String,
       enum: ["user", "admin"],
@@ -43,6 +23,11 @@ const UserSchema = new mongoose.Schema(
     },
     cartItems: {
       type: [CartItemSchema]
+    },
+    providerUserId: {
+      required: true,
+      type: String,
+      unique: true
     }
   },
   { timestamps: true }

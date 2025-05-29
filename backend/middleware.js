@@ -1,4 +1,4 @@
-import { User } from "./models.js"
+import {admin} from "./firebaseAdmin.js"
 
 export const validateSchema = schema => {
   return async (req, res, next) => {
@@ -16,10 +16,18 @@ export const validateSchema = schema => {
 }
 
 export const verifyAuth = async (req, res, next) => {
-  if (req.session.userId) {
-    req.user = await User.findById(req.session.userId).select("-password")
-    next()
-  } else {
-    return res.status(401).json({ user: null, message: "Unauthenticated" })
+  const idToken = req.headers.authorization?.split("Bearer ")[1];
+
+  if (!idToken) {
+    return res.status(401).json({ user: null, message: "Unauthenticated" });
   }
-}
+
+  try {
+    req.user = await admin.auth().verifyIdToken(idToken)
+    // console.log(req.user)
+    next();
+  } catch (error) {
+    console.log(error);
+    return res.status(401).json({ user: null, message: "Unauthenticated" });
+  }
+};
