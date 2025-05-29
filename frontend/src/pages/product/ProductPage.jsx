@@ -1,14 +1,13 @@
 import { Reviews } from "@/pages/product/Reviews.jsx"
 import "./Product.scss"
 import { useParams } from "react-router"
-import { useContext, useEffect, useState } from "react"
-import { AuthContext } from "@/lib/AuthContext.jsx"
+import { useEffect, useState } from "react"
 import { Minus, Plus } from "lucide-react"
 import { axiosInstance } from "@/lib/axiosInstance.js"
+import { auth } from "@/lib/firebase.js"
 
 export const ProductPage = () => {
   const { productId } = useParams()
-  const { authState } = useContext(AuthContext)
   const [itemQuantity, setItemQuantity] = useState(1)
 
   const [product, setProduct] = useState({})
@@ -38,7 +37,7 @@ export const ProductPage = () => {
               <p className="sale-price">${product.salePrice}</p>
             )}
           </div>
-          {authState.user && (
+          {auth.currentUser && (
             <div className="cart-actions">
               <div className="quantity-container">
                 <button
