@@ -1,7 +1,7 @@
 import admin from 'firebase-admin'
 
 admin.initializeApp({
-  credential: admin.credential.applicationDefault()
+  projectId: 'fluffy-umbrella-f13c2'
 });
 
 export { admin }

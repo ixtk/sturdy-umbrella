@@ -18,14 +18,13 @@ export const validateSchema = schema => {
 export const verifyAuth = async (req, res, next) => {
   const idToken = req.headers.authorization?.split("Bearer ")[1];
 
-  console.log(idToken)
   if (!idToken) {
     return res.status(401).json({ user: null, message: "Unauthenticated" });
   }
 
   try {
-    req.user = await admin.auth().verifyIdToken(idToken);
-    console.log(req.user, 'asldfkja')
+    req.user = await admin.auth().verifyIdToken(idToken)
+    // console.log(req.user)
     next();
   } catch (error) {
     console.log(error);
