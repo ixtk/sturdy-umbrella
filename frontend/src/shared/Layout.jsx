@@ -15,6 +15,7 @@ export const Layout = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       // if user logged in
       if (user) {
+        console.log(user)
         setIsLoggedIn(true)
         console.log('current user logged in: true')
         // check if we already have an interceptor, if so, remove the old one

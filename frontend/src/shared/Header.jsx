@@ -3,7 +3,7 @@ import { useState } from "react"
 import { ShoppingCart, X } from "lucide-react"
 import cartProducts from "@/mock-data/cartProducts.json"
 import { signInWithPopup, signOut } from "firebase/auth"
-import { googleProvider, auth } from "@/lib/firebase.js"
+import { googleProvider, facebookProvider, auth } from "@/lib/firebase.js"
 import { axiosInstance } from "@/lib/axiosInstance.js"
 
 export const Header = () => {
@@ -13,8 +13,8 @@ export const Header = () => {
     await signOut(auth)
   }
 
-  const loginWithGoogle = async () => {
-    await signInWithPopup(auth, googleProvider)
+  const loginWithProvider = async (provider) => {
+    await signInWithPopup(auth, provider)
     await axiosInstance.post("/users/social-auth")
   }
 
@@ -30,16 +30,23 @@ export const Header = () => {
             <li>
               <NavLink to="/products">Products</NavLink>
             </li>
-            {!auth.currentUser && (
-              <>
-                <button onClick={loginWithGoogle} className="social-btn btn btn-secondary">
-                  <img src="/google-logo.webp" />
-                  <span>Sign in</span>
-                </button>
-              </>
-            )}
           </ul>
         </nav>
+        {!auth.currentUser && (
+          <div className="social-auth-container">
+            <p>Sign in with</p>
+            <div className="social-btns">
+              <button onClick={() => loginWithProvider(googleProvider)} className="social-btn btn btn-secondary">
+                <img src="/google-logo.webp" />
+                {/*<span>Sign in</span>*/}
+              </button>
+              <button onClick={() => loginWithProvider(facebookProvider)} className="social-btn btn btn-secondary">
+                <img src="/facebook-logo.png" />
+                {/*<span>Sign in</span>*/}
+              </button>
+            </div>
+          </div>
+        )}
         <div className="profile-actions">
           {auth.currentUser && (
             <>
