@@ -1,7 +1,10 @@
-import admin from 'firebase-admin'
+import admin from "firebase-admin"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 admin.initializeApp({
-  projectId: 'fluffy-umbrella-f13c2'
-});
+  projectId: process.env.FIREBASE_PROJECT_ID
+})
 
 export { admin }
